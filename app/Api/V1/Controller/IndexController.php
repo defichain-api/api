@@ -4,7 +4,7 @@ namespace App\Api\V1\Controller;
 
 use Illuminate\Http\JsonResponse;
 
-class PingController
+class IndexController
 {
     /**
      * Check health of the API
@@ -12,8 +12,9 @@ class PingController
      * returns 'pong' - as always 🤙
      *
      * @group API v1
+     * @hideFromAPIDocumentation
      */
-    public function getPing(): JsonResponse
+    public function getIndex(): JsonResponse
     {
         return response()->json(['pong'], JsonResponse::HTTP_OK);
     }
