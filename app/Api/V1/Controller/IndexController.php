@@ -16,6 +16,10 @@ class IndexController
      */
     public function getIndex(): JsonResponse
     {
-        return response()->json(['pong'], JsonResponse::HTTP_OK);
+        return response()->json([
+            'message'   => 'see the docs',
+            'uri'       => route('docs.index'),
+            'changelog' => route('docs.changelog'),
+        ], JsonResponse::HTTP_OK);
     }
 }
