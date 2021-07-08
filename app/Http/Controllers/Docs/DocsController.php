@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Docs;
 
 use Illuminate\Http\JsonResponse;
 
-class HomeController extends Controller
+class DocsController
 {
-    public function getHome(): JsonResponse
+    public function getOverview(): JsonResponse
     {
         return response()->json([
             'latest' => [
