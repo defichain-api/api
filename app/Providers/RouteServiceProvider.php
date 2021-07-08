@@ -29,13 +29,22 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->routes(function () {
             Route::middleware('api')
-                ->domain(sprintf('v1.%s', config('app.domain')))
+                ->domain(config('app.domain'))
+                ->prefix('v1')
+                ->name('api.v1.')
                 ->namespace($this->apiV1Namespace)
                 ->group(base_path('routes/api_v1.php'));
 
             Route::middleware('web')
+                ->domain(sprintf('docs.%s', config('app.domain')))
+                ->namespace($this->namespace)
+                ->name('docs.')
+                ->group(base_path('routes/docs.php'));
+
+            Route::middleware('web')
                 ->namespace($this->namespace)
                 ->domain(config('app.domain'))
+                ->name('web.')
                 ->group(base_path('routes/web.php'));
         });
     }
