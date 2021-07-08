@@ -25,7 +25,7 @@
 
 </head>
 
-<body data-languages="[&quot;bash&quot;,&quot;python&quot;,&quot;php&quot;,&quot;javascript&quot;]">
+<body data-languages="[&quot;bash&quot;,&quot;php&quot;,&quot;python&quot;,&quot;javascript&quot;]">
 <a href="#" id="nav-button">
       <span>
         MENU
@@ -35,8 +35,8 @@
 <div class="tocify-wrapper">
                 <div class="lang-selector">
                             <a href="#" data-language-name="bash">bash</a>
-                            <a href="#" data-language-name="python">python</a>
                             <a href="#" data-language-name="php">php</a>
+                            <a href="#" data-language-name="python">python</a>
                             <a href="#" data-language-name="javascript">javascript</a>
                     </div>
         <div class="search">
@@ -92,18 +92,6 @@ You can switch the language used with the tabs at the top right (or from the nav
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>
 
-<pre><code class="language-python">import requests
-import json
-
-url = 'http://defichain-api.test/v1/ping'
-headers = {
-  'Content-Type': 'application/json',
-  'Accept': 'application/json'
-}
-
-response = requests.request('GET', url, headers=headers)
-response.json()</code></pre>
-
 <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;get(
     'http://defichain-api.test/v1/ping',
@@ -115,6 +103,18 @@ $response = $client-&gt;get(
 );
 $body = $response-&gt;getBody();
 print_r(json_decode((string) $body));</code></pre>
+
+<pre><code class="language-python">import requests
+import json
+
+url = 'http://defichain-api.test/v1/ping'
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('GET', url, headers=headers)
+response.json()</code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
     "http://defichain-api.test/v1/ping"
@@ -143,6 +143,7 @@ fetch(url, {
 content-type: application/json
 x-ratelimit-limit: 60
 x-ratelimit-remaining: 59
+access-control-allow-origin: *
  </code></pre>
         </details>         <pre>
 
@@ -199,15 +200,15 @@ x-ratelimit-remaining: 59
     <div class="dark-box">
                     <div class="lang-selector">
                                     <a href="#" data-language-name="bash">bash</a>
-                                    <a href="#" data-language-name="python">python</a>
                                     <a href="#" data-language-name="php">php</a>
+                                    <a href="#" data-language-name="python">python</a>
                                     <a href="#" data-language-name="javascript">javascript</a>
                             </div>
             </div>
 </div>
 <script>
     $(function () {
-        var exampleLanguages = ["bash","python","php","javascript"];
+        var exampleLanguages = ["bash","php","python","javascript"];
         setupLanguages(exampleLanguages);
     });
 </script>
