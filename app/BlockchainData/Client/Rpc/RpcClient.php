@@ -2,37 +2,55 @@
 
 namespace App\BlockchainData\Client\Rpc;
 
+use App\BlockchainData\Client\Exception\RpcClientException;
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
+use GuzzleHttp\Exception\GuzzleException;
 
 class RpcClient
 {
     protected ?ClientInterface $client;
+    protected RpcClientConfig $config;
 
     public function __construct(RpcClientConfig $config)
     {
-        $this->client = new Client([
-            'base_url' => $config->requestUri(),
-        ]);
+        $this->client = new Client();
+        $this->config = $config;
     }
 
-    public function makeRequest(RpcRequest $request, array $params)
+    /**
+     * @throws \App\BlockchainData\Client\Exception\RpcClientException
+     */
+    public function makeRequest(RpcRequest $request, array $params): array
     {
-        $response = $this->client->request(
-            'POST',
-            '',
-            [
-                'json' => [
-                    'jsonrpc' => '2.0',
-                    'method'  => $request->getMethod(),
-                    'id'      => "api_call",
-                    'params'  => $params,
+        try {
+            $response = $this->client->request(
+                'POST',
+                $this->config->requestUri(),
+                [
+                    'json' => [
+                        'jsonrpc' => '2.0',
+                        'method'  => $request->getMethod(),
+                        'id'      => "api_call",
+                        'params'  => $params,
+                    ],
                 ],
-            ],
-        );
+            );
+        } catch (GuzzleException $e) {
+            throw RpcClientException::generic(sprintf('rpc exception: %s', $e->getMessage()), $e);
+        }
 
-        ray($response);
+        $responseArray = json_decode($response->getBody()->getContents(), true);
+        $this->analyseResponse($responseArray);
 
-        return $response->getBody()->getContents();
+        return $responseArray;
+    }
+
+    /**
+     * @throws RpcClientException
+     */
+    protected function analyseResponse(array $response): void
+    {
+        throw_if(isset($response['error']), RpcClientException::generic($response['error']['message'] ?? ''));
     }
 }
