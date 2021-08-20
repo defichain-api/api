@@ -31,12 +31,13 @@ class RpcClient
                     'json' => [
                         'jsonrpc' => '2.0',
                         'method'  => $request->getMethod(),
-                        'id'      => "api_call",
+                        'id'      => 'api_call',
                         'params'  => $params,
                     ],
                 ],
             );
         } catch (GuzzleException $e) {
+            ray($e);
             throw RpcClientException::generic(sprintf('rpc exception: %s', $e->getMessage()), $e);
         }
 
