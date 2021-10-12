@@ -47,6 +47,22 @@ class RpcClient
         return $responseArray;
     }
 
+    public function getBlock(int $blockNumber): array
+    {
+        return $this->makeRequest(
+            new RpcRequest(RpcRequest::GET_BLOCK),
+            [$blockNumber]
+        );
+    }
+
+    public function getBlockHash(int $blockNumber): string
+    {
+        return $this->makeRequest(
+            new RpcRequest(RpcRequest::GET_BLOCK_HASH),
+            [$blockNumber]
+        )['result'];
+    }
+
     /**
      * @throws RpcClientException
      */
