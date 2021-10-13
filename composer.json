@@ -14,7 +14,7 @@
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.40",
         "laravel/tinker": "^2.5",
-        "ext-json": "*"
+        "ext-json": "*",
         "knuckleswtf/scribe": "^3.5"
     },
     "require-dev": {
@@ -26,7 +26,6 @@
         "mockery/mockery": "^1.4.2",
         "nunomaduro/collision": "^5.0",
         "phpunit/phpunit": "^9.3.3",
-        "roave/security-advisories": "dev-latest",
         "spatie/laravel-ray": "^1.24"
     },
     "autoload": {
