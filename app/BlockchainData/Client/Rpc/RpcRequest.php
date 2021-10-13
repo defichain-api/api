@@ -8,10 +8,12 @@ class RpcRequest
 {
     const GET_BLOCK = 'getblock';
     const GET_BLOCK_HASH = 'getblockhash';
+    const LIST_MASTERNODES = 'listmasternodes';
 
     protected const ALLOWED_METHODS = [
         self::GET_BLOCK,
         self::GET_BLOCK_HASH,
+        self::LIST_MASTERNODES,
     ];
 
     protected string $method;

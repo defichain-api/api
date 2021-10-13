@@ -2,13 +2,14 @@
 
 namespace App\BlockchainData\Client\Rpc;
 
+use App\BlockchainData\Client\ClientInterface;
 use Illuminate\Support\ServiceProvider;
 
 class RpcClientServiceProvider extends ServiceProvider
 {
     public function register()
     {
-        $this->app->singleton(RpcClient::class, fn ($app) => new RpcClient(
+        $this->app->singleton(ClientInterface::class, fn ($app) => new RpcClient(
             new RpcClientConfig(
                 config('rpc.user'),
                 config('rpc.password'),

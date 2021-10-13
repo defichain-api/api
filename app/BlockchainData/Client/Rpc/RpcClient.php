@@ -2,12 +2,13 @@
 
 namespace App\BlockchainData\Client\Rpc;
 
+use App\BlockchainData\Client\ClientInterface as DefiChainClientInterface;
 use App\BlockchainData\Client\Exception\RpcClientException;
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\GuzzleException;
 
-class RpcClient
+class RpcClient implements DefiChainClientInterface
 {
     protected ?ClientInterface $client;
     protected RpcClientConfig $config;
@@ -60,6 +61,14 @@ class RpcClient
         return $this->makeRequest(
             new RpcRequest(RpcRequest::GET_BLOCK_HASH),
             [$blockNumber]
+        )['result'];
+    }
+
+    public function getMasternodes(): array
+    {
+        return $this->makeRequest(
+            new RpcRequest(RpcRequest::LIST_MASTERNODES),
+            []
         )['result'];
     }
 
