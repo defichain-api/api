@@ -15,14 +15,22 @@ Route::get('ping', [PingController::class, 'getPing'])
 Route::prefix('masternode')
     ->name('masternode.')
     ->group(function () {
-        Route::get('/', [MasternodeController::class, 'activePaginated'])
+        Route::get('/', [MasternodeController::class, 'activeMasternodesPaginated'])
             ->name('activePaginated')
             ->middleware(['paginated']);
-        Route::get('{state}', [MasternodeController::class, 'statePaginated'])
+        Route::get('{state}', [MasternodeController::class, 'stateMasternodesPaginated'])
             ->name('statePaginated')
             ->where('state', MasternodeStates::toString())
             ->middleware(['paginated']);
-        Route::get('/with_inactive', [MasternodeController::class, 'allPaginated'])
+        Route::get('with_inactive', [MasternodeController::class, 'allMasternodesPaginated'])
             ->name('allPaginated')
             ->middleware(['paginated']);
+
+        Route::get('all', [MasternodeController::class, 'activeMasternodes'])
+            ->name('active.all');
+        Route::get('{state}/all', [MasternodeController::class, 'stateMasternodes'])
+            ->name('state.all')
+            ->where('state', MasternodeStates::toString());
+        Route::get('with_inactive/all', [MasternodeController::class, 'allMasternodes'])
+            ->name('allMasternodes');
     });

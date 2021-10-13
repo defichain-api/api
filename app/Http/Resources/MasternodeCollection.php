@@ -48,9 +48,15 @@ class MasternodeCollection extends ResourceCollection
                 'resigned_count'     => $allMasternodes->where('state', MasternodeStates::RESIGNED)->count(),
                 'pre_resigned_count' => $allMasternodes->where('state', MasternodeStates::PRE_RESIGNED)->count(),
                 'freezer'            => [
-                    'unfrozen' => $allMasternodes->where('timelock', null)->count(),
-                    '5_year'   => $allMasternodes->where('timelock', '5 years')->count(),
-                    '10_year'  => $allMasternodes->where('timelock', '10 years')->count(),
+                    'unfrozen' => $allMasternodes->whereIn('state', MasternodeStates::ACTIVE_STATES)->where('timelock',
+                        null)
+                        ->count(),
+                    '5_year'   => $allMasternodes->whereIn('state', MasternodeStates::ACTIVE_STATES)
+                        ->where('timelock', '5 years')
+                        ->count(),
+                    '10_year'  => $allMasternodes->whereIn('state', MasternodeStates::ACTIVE_STATES)
+                        ->where('timelock', '10 years')
+                        ->count(),
                 ],
             ];
         });
@@ -58,6 +64,6 @@ class MasternodeCollection extends ResourceCollection
 
     protected function generateWtf(): array
     {
-        return (array) __('api/masternode_wtf');
+        return (array)__('api/masternode_wtf');
     }
 }
