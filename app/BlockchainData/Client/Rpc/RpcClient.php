@@ -22,7 +22,7 @@ class RpcClient implements DefiChainClientInterface
     /**
      * @throws \App\BlockchainData\Client\Exception\RpcClientException
      */
-    public function makeRequest(RpcRequest $request, array $params): array
+    protected function makeRequest(RpcRequest $request, array $params): array
     {
         try {
             $response = $this->client->request(

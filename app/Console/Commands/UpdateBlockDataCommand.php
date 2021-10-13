@@ -17,7 +17,7 @@ class UpdateBlockDataCommand extends Command
 	    $limit = $this->option('limit');
 	    $lastBlockId = Block::max('height') ?? -1;
 	    ray(++$lastBlockId);
-	    $nextBlockHash = $client->makeRequest(new RpcRequest(RpcRequest::GET_BLOCK_HASH), [++$lastBlockId])['result'];
+	    $nextBlockHash = $client->getBlock(++$lastBlockId);
 
 	    for ($i = 0; $i < $limit; $i++) {
 
