@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @mixin \Eloquent
- * @property string id
+ * @property string masternodeId
  * @property string ownerAddress
  * @property string operatorAddress
  * @property string state
@@ -25,7 +25,7 @@ class Masternode extends Model
         'targetMultiplier' => 'array',
     ];
     protected $fillable = [
-        'id',
+        'masternodeId',
         'ownerAddress',
         'operatorAddress',
         'state',

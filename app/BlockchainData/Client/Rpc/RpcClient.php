@@ -38,7 +38,6 @@ class RpcClient implements DefiChainClientInterface
                 ],
             );
         } catch (GuzzleException $e) {
-            ray($e);
             throw RpcClientException::generic(sprintf('rpc exception: %s', $e->getMessage()), $e);
         }
 

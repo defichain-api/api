@@ -15,10 +15,14 @@ class UpdateMasternodesCommand extends Command
     {
         $rawMasternodes = $rpcClient->getMasternodes();
         $masternodes = [];
-
+        $this->info(sprintf(
+                '%s: starting to process data of %s masternodes',
+                now()->toDateTimeString(),
+                count($rawMasternodes))
+        );
         foreach ($rawMasternodes as $masternodeId => $masternodeData) {
             $masternodes[] = [
-                'id'               => $masternodeId,
+                'masternodeId'     => $masternodeId,
                 'ownerAddress'     => $masternodeData['ownerAuthAddress'],
                 'operatorAddress'  => $masternodeData['operatorAuthAddress'],
                 'state'            => $masternodeData['state'],
@@ -37,6 +41,7 @@ class UpdateMasternodesCommand extends Command
             }
         }
         $this->storeMasternodeData($masternodes);
+        $this->newLine(3);
         $this->info(sprintf(
                 '%s: updated the data of %s masternodes',
                 now()->toDateTimeString(),
@@ -47,6 +52,6 @@ class UpdateMasternodesCommand extends Command
     protected function storeMasternodeData(array $data): void
     {
         Masternode::upsert($data, ['id']);
-        $this->info('.');
+        $this->output->write('.', false);
     }
 }

@@ -9,7 +9,7 @@ class CreateMasternodesTable extends Migration
     public function up()
     {
         Schema::create('masternodes', function (Blueprint $table) {
-            $table->string('id')->unique();
+            $table->string('masternodeId')->unique();
             $table->string('ownerAddress')->unique();
             $table->string('operatorAddress')->unique();
             $table->string('state');
