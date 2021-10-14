@@ -131,4 +131,28 @@ class MasternodeController
             filter_var($request->query('wtf', false), FILTER_VALIDATE_BOOLEAN)
         );
     }
+
+    /**
+     * Masternode by address
+     *
+     * Get a masternode by a either the owner address, operator address or the masternode id.
+     * @group      Masternode
+     * @urlParam address string required either the owner address, operator address or the masternode id. Example: 8MPzdvvBrZ4SLjy5Ymq37wKxYftECKjWa3
+     * @queryParam stats boolean Get additional statistics. Default: <code>true</code> Example: true
+     * @queryParam wtf boolean Get explainations for all returned values. Default: <code>false</code> Example: true
+     * @responseFile storage/app/docu_responses/masternode.active_mn.json
+     */
+    public function address(string $address, Request $request):MasternodeCollection
+    {
+        $masternode = Masternode::where('masternodeId', $address)
+            ->orWhere('ownerAddress', $address)
+            ->orWhere('operatorAddress', $address)
+            ->get();
+
+        return new MasternodeCollection(
+            $masternode,
+            filter_var($request->query('stats', true), FILTER_VALIDATE_BOOLEAN),
+            filter_var($request->query('wtf', false), FILTER_VALIDATE_BOOLEAN)
+        );
+    }
 }

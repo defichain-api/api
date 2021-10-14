@@ -26,6 +26,9 @@ Route::prefix('masternode')
             ->name('allPaginated')
             ->middleware(['paginated']);
 
+        Route::get('address/{address}', [MasternodeController::class, 'address'])
+            ->name('address');
+
         Route::get('all', [MasternodeController::class, 'activeMasternodes'])
             ->name('active.all');
         Route::get('{state}/all', [MasternodeController::class, 'stateMasternodes'])
