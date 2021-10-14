@@ -12,7 +12,7 @@ Route::get('/', [IndexController::class, 'getIndex'])
 Route::get('ping', [PingController::class, 'getPing'])
     ->name('ping');
 
-Route::prefix('masternode')
+Route::prefix('masternodes')
     ->name('masternode.')
     ->group(function () {
         Route::get('/', [MasternodeController::class, 'activeMasternodesPaginated'])

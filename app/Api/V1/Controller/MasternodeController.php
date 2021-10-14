@@ -16,9 +16,9 @@ class MasternodeController
      * active Masternodes (paginated)
      *
      * Get all active masternodes, including the states ENABLED and PRE_ENABLED, 1000 elements max on each page.
-     * @group      Masternode
-     * @queryParam stats boolean Get additional statistics. Default: true Example: <code>true</code>
-     * @queryParam wtf boolean Get explainations for all returned values. Default: <code>false</code> Example: true
+     * @group        Masternodes
+     * @queryParam   stats boolean Get additional statistics. Default: true Example: <code>true</code>
+     * @queryParam   wtf boolean Get explainations for all returned values. Default: <code>false</code> Example: true
      * @responseFile storage/app/docu_responses/masternode.active_mn.json
      */
     public function activeMasternodesPaginated(Request $request): MasternodeCollection
@@ -35,9 +35,9 @@ class MasternodeController
      *
      * Get all active masternodes, including the states ENABLED and PRE_ENABLED.
      * <aside class="warning">This request receives a big payload!</aside>
-     * @group      Masternode
-     * @queryParam stats boolean Get additional statistics. Default: true Example: <code>true</code>
-     * @queryParam wtf boolean Get explainations for all returned values. Default: <code>false</code> Example: true
+     * @group        Masternodes
+     * @queryParam   stats boolean Get additional statistics. Default: true Example: <code>true</code>
+     * @queryParam   wtf boolean Get explainations for all returned values. Default: <code>false</code> Example: true
      * @responseFile storage/app/docu_responses/masternode.active_mn.json
      */
     public function activeMasternodes(Request $request): MasternodeCollection
@@ -55,10 +55,10 @@ class MasternodeController
      * Get all masternodes with the requested state, 1000 elements max on each page.
      * <aside class="notice">possible states are <code>ENABLED, PRE_ENABLED, RESIGNED,
      * PRE_RESIGNED and BANNED</code>.</aside>
-     * @group      Masternode
-     * @queryParam stats boolean Get additional statistics. Default: <code>true</code> Example: true
-     * @queryParam wtf boolean Get explainations for all returned values. Default: <code>false</code> Example: true
-     * @urlParam   state string required Select all masternodes with the given state. Example: resigned
+     * @group        Masternodes
+     * @queryParam   stats boolean Get additional statistics. Default: <code>true</code> Example: true
+     * @queryParam   wtf boolean Get explainations for all returned values. Default: <code>false</code> Example: true
+     * @urlParam     state string required Select all masternodes with the given state. Example: resigned
      * @responseFile storage/app/docu_responses/masternode.state_mn.json
      */
     public function stateMasternodesPaginated(Request $request, string $state): MasternodeCollection
@@ -77,10 +77,10 @@ class MasternodeController
      * <aside class="notice">possible states are <code>ENABLED, PRE_ENABLED, RESIGNED,
      * PRE_RESIGNED and BANNED</code>.</aside>
      * <aside class="warning">This request receives a big payload!</aside>
-     * @group      Masternode
-     * @queryParam stats boolean Get additional statistics. Default: <code>true</code> Example: true
-     * @queryParam wtf boolean Get explainations for all returned values. Default: <code>false</code> Example: true
-     * @urlParam   state string required Select all masternodes with the given state. Example: resigned
+     * @group        Masternodes
+     * @queryParam   stats boolean Get additional statistics. Default: <code>true</code> Example: true
+     * @queryParam   wtf boolean Get explainations for all returned values. Default: <code>false</code> Example: true
+     * @urlParam     state string required Select all masternodes with the given state. Example: resigned
      * @responseFile storage/app/docu_responses/masternode.state_mn.json
      */
     public function stateMasternodes(Request $request, string $state): MasternodeCollection
@@ -96,9 +96,9 @@ class MasternodeController
      * active Masternodes (paginated)
      *
      * Get all active masternodes, including the states ENABLED, PRE_ENABLED, RESIGNED, PRE_RESIGNED and BANNED
-     * @group      Masternode
-     * @queryParam stats boolean Get additional statistics. Default: <code>true</code> Example: true
-     * @queryParam wtf boolean Get explainations for all returned values. Default: <code>false</code> Example: true
+     * @group        Masternodes
+     * @queryParam   stats boolean Get additional statistics. Default: <code>true</code> Example: true
+     * @queryParam   wtf boolean Get explainations for all returned values. Default: <code>false</code> Example: true
      * @responseFile storage/app/docu_responses/masternode.active_mn.json
      */
     public function allMasternodesPaginated(Request $request): MasternodeCollection
@@ -117,9 +117,9 @@ class MasternodeController
      *
      * Get all active masternodes, including the states ENABLED, PRE_ENABLED, RESIGNED, PRE_RESIGNED and BANNED
      * <aside class="warning">This request receives a big payload!</aside>
-     * @group      Masternode
-     * @queryParam stats boolean Get additional statistics. Default: <code>true</code> Example: true
-     * @queryParam wtf boolean Get explainations for all returned values. Default: <code>false</code> Example: true
+     * @group        Masternodes
+     * @queryParam   stats boolean Get additional statistics. Default: <code>true</code> Example: true
+     * @queryParam   wtf boolean Get explainations for all returned values. Default: <code>false</code> Example: true
      * @responseFile storage/app/docu_responses/masternode.active_mn.json
      */
     public function allMasternodes(Request $request): MasternodeCollection
@@ -136,13 +136,14 @@ class MasternodeController
      * Masternode by address
      *
      * Get a masternode by a either the owner address, operator address or the masternode id.
-     * @group      Masternode
-     * @urlParam address string required either the owner address, operator address or the masternode id. Example: 8MPzdvvBrZ4SLjy5Ymq37wKxYftECKjWa3
-     * @queryParam stats boolean Get additional statistics. Default: <code>true</code> Example: true
-     * @queryParam wtf boolean Get explainations for all returned values. Default: <code>false</code> Example: true
+     * @group        Masternodes
+     * @urlParam     address string required either the owner address, operator address or the masternode id. Example:
+     *               8MPzdvvBrZ4SLjy5Ymq37wKxYftECKjWa3
+     * @queryParam   stats boolean Get additional statistics. Default: <code>true</code> Example: true
+     * @queryParam   wtf boolean Get explainations for all returned values. Default: <code>false</code> Example: true
      * @responseFile storage/app/docu_responses/masternode.active_mn.json
      */
-    public function address(string $address, Request $request):MasternodeCollection
+    public function address(string $address, Request $request): MasternodeCollection
     {
         $masternode = Masternode::where('masternodeId', $address)
             ->orWhere('ownerAddress', $address)
