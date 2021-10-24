@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 class PaginateAPI
 {
     /**
+     * @codeCoverageIgnore
      * @param \Illuminate\Http\Request $request
      * @param \Closure                 $next
      *
@@ -18,7 +19,6 @@ class PaginateAPI
         $response = $next($request);
 
         $data = $response->getData(true);
-
         if (isset($data['meta']['links'])) {
             unset($data['meta']['links']);
         }
