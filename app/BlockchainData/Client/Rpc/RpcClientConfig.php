@@ -10,7 +10,7 @@ class RpcClientConfig
     protected string $rpcPassword;
 
     public function __construct(
-        string $rpcUser,
+        RpcMethodNotAvailablestring $rpcUser,
         string $rpcPassword,
         string $rpcUri,
         int $port = 8555

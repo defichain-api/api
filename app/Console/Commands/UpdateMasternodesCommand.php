@@ -51,7 +51,7 @@ class UpdateMasternodesCommand extends Command
 
     protected function storeMasternodeData(array $data): void
     {
-        Masternode::upsert($data, ['id']);
+        Masternode::upsert($data, ['masternodeId']);
         $this->output->write('.', false);
     }
 }
