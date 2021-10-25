@@ -1,6 +1,7 @@
 <?php
 
 use App\Api\Enum\MasternodeStates;
+use App\Api\V1\Controller\LoanSchemeController;
 use App\Api\V1\Controller\MasternodeController;
 use App\Api\V1\Controller\IndexController;
 use App\Api\V1\Controller\PingController;
@@ -36,4 +37,19 @@ Route::prefix('masternodes')
             ->where('state', MasternodeStates::toString());
         Route::get('with_inactive/all', [MasternodeController::class, 'allMasternodes'])
             ->name('allMasternodes');
+    });
+
+Route::prefix('vault')
+    ->name('vault.')
+    ->group(function () {
+
+    });
+
+Route::prefix('loan_schemes')
+    ->name('loan_schemes.')
+    ->group(function () {
+        Route::get('/', [LoanSchemeController::class, 'list'])
+            ->name('list');
+        Route::post('update', [LoanSchemeController::class, 'update'])
+            ->name('update');
     });

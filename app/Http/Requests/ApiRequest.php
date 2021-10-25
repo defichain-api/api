@@ -24,4 +24,11 @@ class ApiRequest extends FormRequest
             'errors'  => $validator->errors(),
         ], JsonResponse::HTTP_UNPROCESSABLE_ENTITY));
     }
+
+    public function failedAuthorization()
+    {
+        throw new HttpResponseException(response()->json([
+            'message' => 'this action is unauthorized',
+        ], JsonResponse::HTTP_UNAUTHORIZED));
+    }
 }

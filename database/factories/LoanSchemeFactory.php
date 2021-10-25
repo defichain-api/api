@@ -21,7 +21,7 @@ class LoanSchemeFactory extends Factory
                 'C500',
                 'C1000',
             ], 1, false)[0],
-            'minColaterationRatio' => Arr::random([
+            'minCollaterationRatio' => Arr::random([
                 150,
                 175,
                 200,
@@ -39,7 +39,7 @@ class LoanSchemeFactory extends Factory
         return $this->state(function (array $attributes) use ($ratio) {
             return [
                 'name'                 => sprintf('C%s', $ratio),
-                'minColaterationRatio' => $ratio,
+                'minCollaterationRatio' => $ratio,
             ];
         });
     }

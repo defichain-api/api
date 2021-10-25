@@ -11,7 +11,7 @@ class CreateLoanSchemesTable extends Migration
 		Schema::create('loan_schemes', function (Blueprint $table) {
 			$table->bigIncrements('id');
             $table->string('name')->unique();
-            $table->unsignedInteger('minColaterationRatio');
+            $table->unsignedInteger('minCollaterationRatio');
             $table->unsignedFloat('interestRate', 10, 8);
             $table->boolean('isDefault')->default(false);
 			$table->timestamps();

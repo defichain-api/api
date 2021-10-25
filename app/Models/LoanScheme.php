@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 /**
  * @mixin \Eloquent
  * @property string  name
- * @property integer minColaterationRatio
+ * @property integer minCollaterationRatio
  * @property float   interestRate
  * @property boolean isDefault
  */
@@ -16,7 +16,7 @@ class LoanScheme extends Model
 {
     protected $fillable = [
         'name',
-        'minColaterationRatio',
+        'minCollaterationRatio',
         'interestRate',
         'isDefault',
     ];
