@@ -7,7 +7,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 /** @mixin \App\Models\LoanScheme */
 class LoanSchemeResource extends JsonResource
 {
-    public function toArray($request)
+    public function toArray($request): array
     {
         return [
             'name'                   => $this->name,

@@ -18,6 +18,6 @@ class UpdateLoanSchemeRequest extends ApiRequest
 
     public function authorize(): bool
     {
-        return $this->header('x-auth-key') === '12';
+        return $this->header('x-auth-key') === config('external_auth.x-auth-key');
     }
 }
