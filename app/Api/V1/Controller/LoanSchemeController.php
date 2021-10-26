@@ -10,6 +10,13 @@ use Illuminate\Http\JsonResponse;
 
 class LoanSchemeController
 {
+    /**
+     * Loan Schemes
+     *
+     * Get a list of all current loan scheme.
+     * @group        Loan Scheme
+     * @responseFile storage/app/docu_responses/loan_scheme.json
+     */
     public function list(): LoanSchemeCollection
     {
         return cache()->remember('loan_schemes', now()->addMinutes(15), function () {
@@ -17,6 +24,9 @@ class LoanSchemeController
         });
     }
 
+    /**
+     * @hideFromAPIDocumentation
+     */
     public function update(UpdateLoanSchemeRequest $request, LoanSchemeTransformer $transformer): JsonResponse
     {
         $transformer->init($request->validated())->store();

@@ -48,7 +48,7 @@
                             <li><a href="http://github.com/knuckleswtf/scribe">Documentation powered by Scribe ✍</a></li>
                     </ul>
             <ul class="toc-footer" id="last-updated">
-            <li>Last updated: October 14 2021</li>
+            <li>Last updated: October 26 2021</li>
         </ul>
 </div>
 <div class="page-wrapper">
@@ -66,6 +66,256 @@ You can switch the language used with the tabs at the top right (or from the nav
 
         <h1>Authenticating requests</h1>
 <p>This API is not authenticated.</p>
+
+        <h1 id="api-v1">API v1</h1>
+
+    
+
+            <h2 id="api-v1-GETv1-ping">Check health of the API</h2>
+
+<p>
+</p>
+
+<p>returns 'pong' - as always 🤙</p>
+
+<span id="example-requests-GETv1-ping">
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">curl --request GET \
+    --get "https://defichain-api.io/v1/ping" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre>
+
+<pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'https://defichain-api.io/v1/ping',
+    [
+        'headers' =&gt; [
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre>
+
+<pre><code class="language-python">import requests
+import json
+
+url = 'https://defichain-api.io/v1/ping'
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('GET', url, headers=headers)
+response.json()</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "https://defichain-api.io/v1/ping"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+</span>
+
+<span id="example-responses-GETv1-ping">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 60
+x-ratelimit-remaining: 59
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">[
+    &quot;pong&quot;
+]</code>
+ </pre>
+    </span>
+<span id="execution-results-GETv1-ping" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETv1-ping"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETv1-ping"></code></pre>
+</span>
+<span id="execution-error-GETv1-ping" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETv1-ping"></code></pre>
+</span>
+<form id="form-GETv1-ping" data-method="GET"
+      data-path="v1/ping"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETv1-ping', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>v1/ping</code></b>
+        </p>
+                    </form>
+
+        <h1 id="loan-scheme">Loan Scheme</h1>
+
+    
+
+            <h2 id="loan-scheme-GETv1-loan_schemes">Loan Schemes</h2>
+
+<p>
+</p>
+
+<p>Get a list of all current loan scheme.</p>
+
+<span id="example-requests-GETv1-loan_schemes">
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">curl --request GET \
+    --get "https://defichain-api.io/v1/loan_schemes" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre>
+
+<pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'https://defichain-api.io/v1/loan_schemes',
+    [
+        'headers' =&gt; [
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre>
+
+<pre><code class="language-python">import requests
+import json
+
+url = 'https://defichain-api.io/v1/loan_schemes'
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('GET', url, headers=headers)
+response.json()</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "https://defichain-api.io/v1/loan_schemes"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+</span>
+
+<span id="example-responses-GETv1-loan_schemes">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;data&quot;: [
+        {
+            &quot;name&quot;: &quot;C150&quot;,
+            &quot;minCollaterationRatio&quot;: 150,
+            &quot;interestRate&quot;: 5,
+            &quot;isDefault&quot;: true,
+            &quot;countVaultsUsingScheme&quot;: 99
+        },
+        {
+            &quot;name&quot;: &quot;C175&quot;,
+            &quot;minCollaterationRatio&quot;: 175,
+            &quot;interestRate&quot;: 3,
+            &quot;isDefault&quot;: false,
+            &quot;countVaultsUsingScheme&quot;: 12
+        },
+        {
+            &quot;name&quot;: &quot;C200&quot;,
+            &quot;minCollaterationRatio&quot;: 200,
+            &quot;interestRate&quot;: 2,
+            &quot;isDefault&quot;: false,
+            &quot;countVaultsUsingScheme&quot;: 0
+        },
+        {
+            &quot;name&quot;: &quot;C350&quot;,
+            &quot;minCollaterationRatio&quot;: 350,
+            &quot;interestRate&quot;: 1.5,
+            &quot;isDefault&quot;: false,
+            &quot;countVaultsUsingScheme&quot;: 0
+        },
+        {
+            &quot;name&quot;: &quot;C500&quot;,
+            &quot;minCollaterationRatio&quot;: 500,
+            &quot;interestRate&quot;: 1,
+            &quot;isDefault&quot;: false,
+            &quot;countVaultsUsingScheme&quot;: 0
+        },
+        {
+            &quot;name&quot;: &quot;C1000&quot;,
+            &quot;minCollaterationRatio&quot;: 1000,
+            &quot;interestRate&quot;: 0.5,
+            &quot;isDefault&quot;: false,
+            &quot;countVaultsUsingScheme&quot;: 0
+        }
+    ],
+    &quot;meta&quot;: {
+        &quot;count_schemes&quot;: 6
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETv1-loan_schemes" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETv1-loan_schemes"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETv1-loan_schemes"></code></pre>
+</span>
+<span id="execution-error-GETv1-loan_schemes" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETv1-loan_schemes"></code></pre>
+</span>
+<form id="form-GETv1-loan_schemes" data-method="GET"
+      data-path="v1/loan_schemes"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETv1-loan_schemes', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>v1/loan_schemes</code></b>
+        </p>
+                    </form>
 
         <h1 id="masternodes">Masternodes</h1>
 
@@ -1486,113 +1736,6 @@ fetch(url, {
     <br>
 <p>Get explainations for all returned values. Default: <code>false</code></p>            </p>
                 </form>
-
-        <h1 id="api-v1">API v1</h1>
-
-    
-
-            <h2 id="api-v1-GETv1-ping">Check health of the API</h2>
-
-<p>
-</p>
-
-<p>returns 'pong' - as always 🤙</p>
-
-<span id="example-requests-GETv1-ping">
-<blockquote>Example request:</blockquote>
-
-
-<pre><code class="language-bash">curl --request GET \
-    --get "https://defichain-api.io/v1/ping" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre>
-
-<pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$response = $client-&gt;get(
-    'https://defichain-api.io/v1/ping',
-    [
-        'headers' =&gt; [
-            'Accept' =&gt; 'application/json',
-        ],
-    ]
-);
-$body = $response-&gt;getBody();
-print_r(json_decode((string) $body));</code></pre>
-
-<pre><code class="language-python">import requests
-import json
-
-url = 'https://defichain-api.io/v1/ping'
-headers = {
-  'Content-Type': 'application/json',
-  'Accept': 'application/json'
-}
-
-response = requests.request('GET', url, headers=headers)
-response.json()</code></pre>
-
-<pre><code class="language-javascript">const url = new URL(
-    "https://defichain-api.io/v1/ping"
-);
-
-const headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "GET",
-    headers,
-}).then(response =&gt; response.json());</code></pre>
-</span>
-
-<span id="example-responses-GETv1-ping">
-            <blockquote>
-            <p>Example response (200):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary>
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-x-ratelimit-limit: 60
-x-ratelimit-remaining: 59
-access-control-allow-origin: *
- </code></pre>
-        </details>         <pre>
-
-<code class="language-json">[
-    &quot;pong&quot;
-]</code>
- </pre>
-    </span>
-<span id="execution-results-GETv1-ping" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-GETv1-ping"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-GETv1-ping"></code></pre>
-</span>
-<span id="execution-error-GETv1-ping" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETv1-ping"></code></pre>
-</span>
-<form id="form-GETv1-ping" data-method="GET"
-      data-path="v1/ping"
-      data-authed="0"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETv1-ping', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-            </h3>
-            <p>
-            <small class="badge badge-green">GET</small>
-            <b><code>v1/ping</code></b>
-        </p>
-                    </form>
 
     
 
