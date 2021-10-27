@@ -20,7 +20,7 @@ class LoanSchemeController
     public function list(): LoanSchemeCollection
     {
         return cache()->remember('loan_schemes', now()->addMinutes(15), function () {
-            return new LoanSchemeCollection(LoanScheme::with('vaults')->all());
+            return new LoanSchemeCollection(LoanScheme::with('vaults')->get());
         });
     }
 
@@ -32,7 +32,8 @@ class LoanSchemeController
         $transformer->init($request->validated())->store();
 
         return response()->json([
-            'message' => 'updated loan schemes',
+            'message'    => 'updated loan schemes',
+            'items_received' => count($request->validated()),
         ], JsonResponse::HTTP_OK);
     }
 }

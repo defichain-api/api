@@ -5,6 +5,7 @@ use App\Api\V1\Controller\LoanSchemeController;
 use App\Api\V1\Controller\MasternodeController;
 use App\Api\V1\Controller\IndexController;
 use App\Api\V1\Controller\PingController;
+use App\Api\V1\Controller\VaultController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [IndexController::class, 'getIndex'])
@@ -39,10 +40,14 @@ Route::prefix('masternodes')
             ->name('allMasternodes');
     });
 
-Route::prefix('vault')
-    ->name('vault.')
+Route::prefix('vaults')
+    ->name('vaults.')
     ->group(function () {
-
+        Route::get('/', [VaultController::class, 'list'])
+            ->name('list')
+            ->middleware(['paginated']);
+        Route::post('update', [VaultController::class, 'update'])
+            ->name('update');
     });
 
 Route::prefix('loan_schemes')

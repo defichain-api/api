@@ -4,14 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Str;
 
 /**
  * @mixin \Eloquent
  * @property string     vaultId
- * @property LoanScheme loadScheme
- * @property string     loadSchemeId
+ * @property LoanScheme loanScheme
+ * @property string     loanSchemeId
  * @property string     ownerAddress
  * @property boolean    isUnderLiquidation
  * @property boolean    invalidPrice
