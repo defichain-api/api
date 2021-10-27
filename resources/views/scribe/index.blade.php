@@ -48,7 +48,7 @@
                             <li><a href="http://github.com/knuckleswtf/scribe">Documentation powered by Scribe ✍</a></li>
                     </ul>
             <ul class="toc-footer" id="last-updated">
-            <li>Last updated: October 26 2021</li>
+            <li>Last updated: October 27 2021</li>
         </ul>
 </div>
 <div class="page-wrapper">
@@ -178,7 +178,7 @@ access-control-allow-origin: *
 
     
 
-            <h2 id="loan-scheme-GETv1-loan_schemes">Loan Schemes</h2>
+            <h2 id="loan-scheme-GETv1-loan_schemes">list Loan Schemes</h2>
 
 <p>
 </p>
@@ -1736,6 +1736,437 @@ fetch(url, {
     <br>
 <p>Get explainations for all returned values. Default: <code>false</code></p>            </p>
                 </form>
+
+        <h1 id="vaults">Vaults</h1>
+
+    
+
+            <h2 id="vaults-GETv1-vaults">list all vaults</h2>
+
+<p>
+</p>
+
+<p>Get a list of all current loan scheme. Paginated with max 1000 elements per page.</p>
+
+<span id="example-requests-GETv1-vaults">
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">curl --request GET \
+    --get "https://defichain-api.io/v1/vaults" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre>
+
+<pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'https://defichain-api.io/v1/vaults',
+    [
+        'headers' =&gt; [
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre>
+
+<pre><code class="language-python">import requests
+import json
+
+url = 'https://defichain-api.io/v1/vaults'
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('GET', url, headers=headers)
+response.json()</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "https://defichain-api.io/v1/vaults"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+</span>
+
+<span id="example-responses-GETv1-vaults">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;data&quot;: [
+        {
+            &quot;vaultId&quot;: &quot;4f2c55521b7a1b68e20f83b82372e202088453a86cce1f365fd2dcc1fc385d0a&quot;,
+            &quot;loadSchemeId&quot;: &quot;C150&quot;,
+            &quot;ownerAddress&quot;: &quot;tn2cpmFQJdKmrfzzKxeDoZ5wAWWUo5maED&quot;,
+            &quot;isUnderLiquidation&quot;: 0,
+            &quot;invalidPrice&quot;: 0,
+            &quot;collateralAmounts&quot;: [
+                &quot;10000.00000000@DFI&quot;
+            ],
+            &quot;loanAmounts&quot;: [
+                &quot;5.00148096@TSLA&quot;,
+                &quot;20003.25798370@DUSD&quot;
+            ],
+            &quot;interestAmounts&quot;: [
+                &quot;0.00148096@TSLA&quot;,
+                &quot;3.25798370@DUSD&quot;
+            ],
+            &quot;collateralValue&quot;: 40000,
+            &quot;loanValue&quot;: 24553.00518339,
+            &quot;currentRatio&quot;: 163
+        },
+        {
+            &quot;vaultId&quot;: &quot;4f2c56761b7a1b68e20f83b82372e203088453a86cce1f365fd2dcc1fc385d0c&quot;,
+            &quot;loadSchemeId&quot;: &quot;C350&quot;,
+            &quot;ownerAddress&quot;: &quot;tn2cpmFQJdKmrfzzKxeDoZ5wAWWUo5maED&quot;,
+            &quot;isUnderLiquidation&quot;: 0,
+            &quot;invalidPrice&quot;: 0,
+            &quot;collateralAmounts&quot;: [
+                &quot;10000.00000000@DFI&quot;
+            ],
+            &quot;loanAmounts&quot;: [
+                &quot;5.00148096@TSLA&quot;,
+                &quot;20003.25798370@DUSD&quot;
+            ],
+            &quot;interestAmounts&quot;: [
+                &quot;0.00148096@TSLA&quot;,
+                &quot;3.25798370@DUSD&quot;
+            ],
+            &quot;collateralValue&quot;: 40000,
+            &quot;loanValue&quot;: 24553.00518339,
+            &quot;currentRatio&quot;: 163
+        }
+    ],
+    &quot;stats&quot;: {
+        &quot;count&quot;: 2,
+        &quot;count_under_liquidation&quot;: 0,
+        &quot;schemes_used&quot;: {
+            &quot;C150&quot;: 1,
+            &quot;C175&quot;: 0,
+            &quot;C200&quot;: 0,
+            &quot;C350&quot;: 1,
+            &quot;C500&quot;: 0,
+            &quot;C1000&quot;: 0
+        },
+        &quot;sum_collateral_value&quot;: 80000,
+        &quot;sum_loan_value&quot;: 49106.01036678
+    },
+    &quot;links&quot;: {
+        &quot;first&quot;: &quot;http://defichain-api.test/v1/vaults?page=1&quot;,
+        &quot;last&quot;: &quot;http://defichain-api.test/v1/vaults?page=1&quot;,
+        &quot;prev&quot;: null,
+        &quot;next&quot;: null
+    },
+    &quot;meta&quot;: {
+        &quot;current_page&quot;: 1,
+        &quot;from&quot;: 1,
+        &quot;last_page&quot;: 1,
+        &quot;path&quot;: &quot;http://defichain-api.test/v1/vaults&quot;,
+        &quot;per_page&quot;: 5,
+        &quot;to&quot;: 2,
+        &quot;total&quot;: 2
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETv1-vaults" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETv1-vaults"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETv1-vaults"></code></pre>
+</span>
+<span id="execution-error-GETv1-vaults" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETv1-vaults"></code></pre>
+</span>
+<form id="form-GETv1-vaults" data-method="GET"
+      data-path="v1/vaults"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETv1-vaults', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>v1/vaults</code></b>
+        </p>
+                    </form>
+
+            <h2 id="vaults-GETv1-vaults-id--vaultId-">get vault</h2>
+
+<p>
+</p>
+
+<p>Get a vault by a given vault id or owner address</p>
+
+<span id="example-requests-GETv1-vaults-id--vaultId-">
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">curl --request GET \
+    --get "https://defichain-api.io/v1/vaults/id/est" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre>
+
+<pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'https://defichain-api.io/v1/vaults/id/est',
+    [
+        'headers' =&gt; [
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre>
+
+<pre><code class="language-python">import requests
+import json
+
+url = 'https://defichain-api.io/v1/vaults/id/est'
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('GET', url, headers=headers)
+response.json()</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "https://defichain-api.io/v1/vaults/id/est"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+</span>
+
+<span id="example-responses-GETv1-vaults-id--vaultId-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;data&quot;: {
+        &quot;vaultId&quot;: &quot;4f2c56761b7a1b68e20f83b82372e203088453a86cce1f365fd2dcc1fc385d0c&quot;,
+        &quot;loadSchemeId&quot;: &quot;C350&quot;,
+        &quot;ownerAddress&quot;: &quot;tn2cpmFQJdKmrfzzKxeDoZ5wAWWUo5maED&quot;,
+        &quot;isUnderLiquidation&quot;: 0,
+        &quot;invalidPrice&quot;: 0,
+        &quot;collateralAmounts&quot;: [
+            &quot;10000.00000000@DFI&quot;
+        ],
+        &quot;loanAmounts&quot;: [
+            &quot;5.00148096@TSLA&quot;,
+            &quot;20003.25798370@DUSD&quot;
+        ],
+        &quot;interestAmounts&quot;: [
+            &quot;0.00148096@TSLA&quot;,
+            &quot;3.25798370@DUSD&quot;
+        ],
+        &quot;collateralValue&quot;: 40000,
+        &quot;loanValue&quot;: 24553.00518339,
+        &quot;currentRatio&quot;: 163
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (400):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;message&quot;: &quot;vault not found&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETv1-vaults-id--vaultId-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETv1-vaults-id--vaultId-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETv1-vaults-id--vaultId-"></code></pre>
+</span>
+<span id="execution-error-GETv1-vaults-id--vaultId-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETv1-vaults-id--vaultId-"></code></pre>
+</span>
+<form id="form-GETv1-vaults-id--vaultId-" data-method="GET"
+      data-path="v1/vaults/id/{vaultId}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETv1-vaults-id--vaultId-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>v1/vaults/id/{vaultId}</code></b>
+        </p>
+                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>vaultId</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="vaultId"
+               data-endpoint="GETv1-vaults-id--vaultId-"
+               data-component="url" required  hidden>
+    <br>
+            </p>
+                    </form>
+
+            <h2 id="vaults-GETv1-vaults-address--ownerAddress-">get vault</h2>
+
+<p>
+</p>
+
+<p>Get a vault by a given vault id or owner address</p>
+
+<span id="example-requests-GETv1-vaults-address--ownerAddress-">
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">curl --request GET \
+    --get "https://defichain-api.io/v1/vaults/address/omnis" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre>
+
+<pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'https://defichain-api.io/v1/vaults/address/omnis',
+    [
+        'headers' =&gt; [
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre>
+
+<pre><code class="language-python">import requests
+import json
+
+url = 'https://defichain-api.io/v1/vaults/address/omnis'
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('GET', url, headers=headers)
+response.json()</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "https://defichain-api.io/v1/vaults/address/omnis"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+</span>
+
+<span id="example-responses-GETv1-vaults-address--ownerAddress-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;data&quot;: {
+        &quot;vaultId&quot;: &quot;4f2c56761b7a1b68e20f83b82372e203088453a86cce1f365fd2dcc1fc385d0c&quot;,
+        &quot;loadSchemeId&quot;: &quot;C350&quot;,
+        &quot;ownerAddress&quot;: &quot;tn2cpmFQJdKmrfzzKxeDoZ5wAWWUo5maED&quot;,
+        &quot;isUnderLiquidation&quot;: 0,
+        &quot;invalidPrice&quot;: 0,
+        &quot;collateralAmounts&quot;: [
+            &quot;10000.00000000@DFI&quot;
+        ],
+        &quot;loanAmounts&quot;: [
+            &quot;5.00148096@TSLA&quot;,
+            &quot;20003.25798370@DUSD&quot;
+        ],
+        &quot;interestAmounts&quot;: [
+            &quot;0.00148096@TSLA&quot;,
+            &quot;3.25798370@DUSD&quot;
+        ],
+        &quot;collateralValue&quot;: 40000,
+        &quot;loanValue&quot;: 24553.00518339,
+        &quot;currentRatio&quot;: 163
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (400):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;message&quot;: &quot;vault not found&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETv1-vaults-address--ownerAddress-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETv1-vaults-address--ownerAddress-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETv1-vaults-address--ownerAddress-"></code></pre>
+</span>
+<span id="execution-error-GETv1-vaults-address--ownerAddress-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETv1-vaults-address--ownerAddress-"></code></pre>
+</span>
+<form id="form-GETv1-vaults-address--ownerAddress-" data-method="GET"
+      data-path="v1/vaults/address/{ownerAddress}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETv1-vaults-address--ownerAddress-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>v1/vaults/address/{ownerAddress}</code></b>
+        </p>
+                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>ownerAddress</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="ownerAddress"
+               data-endpoint="GETv1-vaults-address--ownerAddress-"
+               data-component="url" required  hidden>
+    <br>
+            </p>
+                    </form>
 
     
 

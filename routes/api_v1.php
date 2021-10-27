@@ -48,6 +48,10 @@ Route::prefix('vaults')
             ->middleware(['paginated']);
         Route::post('update', [VaultController::class, 'update'])
             ->name('update');
+        Route::get('id/{vaultId}', [VaultController::class, 'getByIdOrAddress'])
+            ->name('vault_id');
+        Route::get('address/{ownerAddress}', [VaultController::class, 'getByIdOrAddress'])
+            ->name('vault_address');
     });
 
 Route::prefix('loan_schemes')

@@ -6,7 +6,7 @@ endpoints:
       - GET
     uri: v1/loan_schemes
     metadata:
-      title: 'Loan Schemes'
+      title: 'list Loan Schemes'
       description: 'Get a list of all current loan scheme.'
       authenticated: false
     headers:

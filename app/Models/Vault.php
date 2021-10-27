@@ -48,6 +48,11 @@ class Vault extends Model
         return $this->belongsTo(LoanScheme::class, 'loanSchemeId', 'id');
     }
 
+    public function getVaultIdAttribute(): string
+    {
+        return $this->attributes['vaultId'];
+    }
+
     public function setLoanSchemeIdAttribute($value)
     {
         if ($value instanceof LoanScheme) {

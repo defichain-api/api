@@ -11,7 +11,7 @@ use Illuminate\Http\JsonResponse;
 class LoanSchemeController
 {
     /**
-     * Loan Schemes
+     * list Loan Schemes
      *
      * Get a list of all current loan scheme.
      * @group        Loan Scheme
