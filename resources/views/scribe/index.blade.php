@@ -48,7 +48,7 @@
                             <li><a href="http://github.com/knuckleswtf/scribe">Documentation powered by Scribe ✍</a></li>
                     </ul>
             <ul class="toc-footer" id="last-updated">
-            <li>Last updated: October 27 2021</li>
+            <li>Last updated: October 28 2021</li>
         </ul>
 </div>
 <div class="page-wrapper">
@@ -1746,14 +1746,14 @@ fetch(url, {
 <p>
 </p>
 
-<p>Get a list of all current loan scheme. Paginated with max 1000 elements per page.</p>
+<p>Get a list of all vaults. Paginated with max 1000 elements per page.</p>
 
 <span id="example-requests-GETv1-vaults">
 <blockquote>Example request:</blockquote>
 
 
 <pre><code class="language-bash">curl --request GET \
-    --get "https://defichain-api.io/v1/vaults" \
+    --get "https://defichain-api.io/v1/vaults?stats=1&amp;wtf=1" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>
 
@@ -1764,6 +1764,10 @@ $response = $client-&gt;get(
         'headers' =&gt; [
             'Accept' =&gt; 'application/json',
         ],
+        'query' =&gt; [
+            'stats'=&gt; '1',
+            'wtf'=&gt; '1',
+        ],
     ]
 );
 $body = $response-&gt;getBody();
@@ -1773,17 +1777,28 @@ print_r(json_decode((string) $body));</code></pre>
 import json
 
 url = 'https://defichain-api.io/v1/vaults'
+params = {
+  'stats': '1',
+  'wtf': '1',
+}
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json'
 }
 
-response = requests.request('GET', url, headers=headers)
+response = requests.request('GET', url, headers=headers, params=params)
 response.json()</code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
     "https://defichain-api.io/v1/vaults"
 );
+
+const params = {
+    "stats": "1",
+    "wtf": "1",
+};
+Object.keys(params)
+    .forEach(key =&gt; url.searchParams.append(key, params[key]));
 
 const headers = {
     "Content-Type": "application/json",
@@ -1805,32 +1820,10 @@ fetch(url, {
 <code class="language-json">{
     &quot;data&quot;: [
         {
-            &quot;vaultId&quot;: &quot;4f2c55521b7a1b68e20f83b82372e202088453a86cce1f365fd2dcc1fc385d0a&quot;,
-            &quot;loadSchemeId&quot;: &quot;C150&quot;,
-            &quot;ownerAddress&quot;: &quot;tn2cpmFQJdKmrfzzKxeDoZ5wAWWUo5maED&quot;,
-            &quot;isUnderLiquidation&quot;: 0,
-            &quot;invalidPrice&quot;: 0,
-            &quot;collateralAmounts&quot;: [
-                &quot;10000.00000000@DFI&quot;
-            ],
-            &quot;loanAmounts&quot;: [
-                &quot;5.00148096@TSLA&quot;,
-                &quot;20003.25798370@DUSD&quot;
-            ],
-            &quot;interestAmounts&quot;: [
-                &quot;0.00148096@TSLA&quot;,
-                &quot;3.25798370@DUSD&quot;
-            ],
-            &quot;collateralValue&quot;: 40000,
-            &quot;loanValue&quot;: 24553.00518339,
-            &quot;currentRatio&quot;: 163
-        },
-        {
             &quot;vaultId&quot;: &quot;4f2c56761b7a1b68e20f83b82372e203088453a86cce1f365fd2dcc1fc385d0c&quot;,
             &quot;loadSchemeId&quot;: &quot;C350&quot;,
             &quot;ownerAddress&quot;: &quot;tn2cpmFQJdKmrfzzKxeDoZ5wAWWUo5maED&quot;,
-            &quot;isUnderLiquidation&quot;: 0,
-            &quot;invalidPrice&quot;: 0,
+            &quot;state&quot;: &quot;active&quot;,
             &quot;collateralAmounts&quot;: [
                 &quot;10000.00000000@DFI&quot;
             ],
@@ -1844,22 +1837,65 @@ fetch(url, {
             ],
             &quot;collateralValue&quot;: 40000,
             &quot;loanValue&quot;: 24553.00518339,
+            &quot;interestValue&quot;: 4.60518339,
             &quot;currentRatio&quot;: 163
+        },
+        {
+            &quot;vaultId&quot;: &quot;4f2c56761b7a1b68e20f83b82372e203088453a86cce1f365fd2dcc1fc385d0d&quot;,
+            &quot;loadSchemeId&quot;: &quot;C350&quot;,
+            &quot;ownerAddress&quot;: &quot;tn2cpmFQJdKmrfzzKxeDoZ5wAWWUo5maED&quot;,
+            &quot;state&quot;: &quot;active&quot;,
+            &quot;collateralAmounts&quot;: [
+                &quot;10000.00000000@DFI&quot;
+            ],
+            &quot;loanAmounts&quot;: [
+                &quot;5.00148096@TSLA&quot;,
+                &quot;20003.25798370@DUSD&quot;
+            ],
+            &quot;interestAmounts&quot;: [
+                &quot;0.00148096@TSLA&quot;,
+                &quot;3.25798370@DUSD&quot;
+            ],
+            &quot;collateralValue&quot;: 40000,
+            &quot;loanValue&quot;: 24553.00518339,
+            &quot;interestValue&quot;: 0,
+            &quot;currentRatio&quot;: -1
+        },
+        {
+            &quot;vaultId&quot;: &quot;5f2c56761b7a1b68e20f83b82372e203088453a86cce1f365fd2dcc1fc385d0d&quot;,
+            &quot;loadSchemeId&quot;: &quot;C350&quot;,
+            &quot;ownerAddress&quot;: &quot;tn2cpmFQJdKmrfzzKxeDoZ5wAWWUo5maED&quot;,
+            &quot;state&quot;: &quot;inactive&quot;,
+            &quot;collateralAmounts&quot;: [
+                &quot;10000.00000000@DFI&quot;
+            ],
+            &quot;loanAmounts&quot;: [
+                &quot;5.00148096@TSLA&quot;,
+                &quot;20003.25798370@DUSD&quot;
+            ],
+            &quot;interestAmounts&quot;: [
+                &quot;0.00148096@TSLA&quot;,
+                &quot;3.25798370@DUSD&quot;
+            ],
+            &quot;collateralValue&quot;: 40000,
+            &quot;loanValue&quot;: 24553.00518339,
+            &quot;interestValue&quot;: 0,
+            &quot;currentRatio&quot;: -1
         }
     ],
     &quot;stats&quot;: {
-        &quot;count&quot;: 2,
-        &quot;count_under_liquidation&quot;: 0,
+        &quot;count&quot;: 3,
+        &quot;count_active&quot;: 2,
         &quot;schemes_used&quot;: {
-            &quot;C150&quot;: 1,
+            &quot;C150&quot;: 0,
             &quot;C175&quot;: 0,
             &quot;C200&quot;: 0,
-            &quot;C350&quot;: 1,
+            &quot;C350&quot;: 2,
             &quot;C500&quot;: 0,
             &quot;C1000&quot;: 0
         },
-        &quot;sum_collateral_value&quot;: 80000,
-        &quot;sum_loan_value&quot;: 49106.01036678
+        &quot;sum_collateral_value&quot;: 120000,
+        &quot;sum_loan_value&quot;: 73659.01555017
     },
     &quot;links&quot;: {
         &quot;first&quot;: &quot;http://defichain-api.test/v1/vaults?page=1&quot;,
@@ -1873,8 +1909,8 @@ fetch(url, {
         &quot;last_page&quot;: 1,
         &quot;path&quot;: &quot;http://defichain-api.test/v1/vaults&quot;,
         &quot;per_page&quot;: 5,
-        &quot;to&quot;: 2,
-        &quot;total&quot;: 2
+        &quot;to&quot;: 3,
+        &quot;total&quot;: 3
     }
 }</code>
  </pre>
@@ -1904,27 +1940,64 @@ fetch(url, {
             <small class="badge badge-green">GET</small>
             <b><code>v1/vaults</code></b>
         </p>
-                    </form>
+                        <h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
+                    <p>
+                <b><code>stats</code></b>&nbsp;&nbsp;<small>boolean</small>     <i>optional</i> &nbsp;
+                <label data-endpoint="GETv1-vaults" hidden>
+            <input type="radio" name="stats"
+                   value="1"
+                   data-endpoint="GETv1-vaults"
+                   data-component="query"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="GETv1-vaults" hidden>
+            <input type="radio" name="stats"
+                   value="0"
+                   data-endpoint="GETv1-vaults"
+                   data-component="query"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>Get additional statistics. Default: true</p>            </p>
+                    <p>
+                <b><code>wtf</code></b>&nbsp;&nbsp;<small>boolean</small>     <i>optional</i> &nbsp;
+                <label data-endpoint="GETv1-vaults" hidden>
+            <input type="radio" name="wtf"
+                   value="1"
+                   data-endpoint="GETv1-vaults"
+                   data-component="query"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="GETv1-vaults" hidden>
+            <input type="radio" name="wtf"
+                   value="0"
+                   data-endpoint="GETv1-vaults"
+                   data-component="query"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>Get explainations for all returned values. Default: <code>false</code></p>            </p>
+                </form>
 
             <h2 id="vaults-GETv1-vaults-id--vaultId-">get vault</h2>
 
 <p>
 </p>
 
-<p>Get a vault by a given vault id or owner address</p>
+<p>Get a vault by a given vault id or owner address.</p>
 
 <span id="example-requests-GETv1-vaults-id--vaultId-">
 <blockquote>Example request:</blockquote>
 
 
 <pre><code class="language-bash">curl --request GET \
-    --get "https://defichain-api.io/v1/vaults/id/est" \
+    --get "https://defichain-api.io/v1/vaults/id/non" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>
 
 <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;get(
-    'https://defichain-api.io/v1/vaults/id/est',
+    'https://defichain-api.io/v1/vaults/id/non',
     [
         'headers' =&gt; [
             'Accept' =&gt; 'application/json',
@@ -1937,7 +2010,7 @@ print_r(json_decode((string) $body));</code></pre>
 <pre><code class="language-python">import requests
 import json
 
-url = 'https://defichain-api.io/v1/vaults/id/est'
+url = 'https://defichain-api.io/v1/vaults/id/non'
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json'
@@ -1947,7 +2020,7 @@ response = requests.request('GET', url, headers=headers)
 response.json()</code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "https://defichain-api.io/v1/vaults/id/est"
+    "https://defichain-api.io/v1/vaults/id/non"
 );
 
 const headers = {
@@ -1969,11 +2042,10 @@ fetch(url, {
 
 <code class="language-json">{
     &quot;data&quot;: {
-        &quot;vaultId&quot;: &quot;4f2c56761b7a1b68e20f83b82372e203088453a86cce1f365fd2dcc1fc385d0c&quot;,
+        &quot;vaultId&quot;: &quot;4f2c56761b7a1b68e20f83b82372e203088453a86cce1f365fd2dcc1fc385d0d&quot;,
         &quot;loadSchemeId&quot;: &quot;C350&quot;,
         &quot;ownerAddress&quot;: &quot;tn2cpmFQJdKmrfzzKxeDoZ5wAWWUo5maED&quot;,
-        &quot;isUnderLiquidation&quot;: 0,
-        &quot;invalidPrice&quot;: 0,
+        &quot;state&quot;: &quot;active&quot;,
         &quot;collateralAmounts&quot;: [
             &quot;10000.00000000@DFI&quot;
         ],
@@ -1987,7 +2059,8 @@ fetch(url, {
         ],
         &quot;collateralValue&quot;: 40000,
         &quot;loanValue&quot;: 24553.00518339,
-        &quot;currentRatio&quot;: 163
+        &quot;interestValue&quot;: 0,
+        &quot;currentRatio&quot;: -1
     }
 }</code>
  </pre>
@@ -2042,20 +2115,20 @@ fetch(url, {
 <p>
 </p>
 
-<p>Get a vault by a given vault id or owner address</p>
+<p>Get a vault by a given vault id or owner address.</p>
 
 <span id="example-requests-GETv1-vaults-address--ownerAddress-">
 <blockquote>Example request:</blockquote>
 
 
 <pre><code class="language-bash">curl --request GET \
-    --get "https://defichain-api.io/v1/vaults/address/omnis" \
+    --get "https://defichain-api.io/v1/vaults/address/et" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>
 
 <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;get(
-    'https://defichain-api.io/v1/vaults/address/omnis',
+    'https://defichain-api.io/v1/vaults/address/et',
     [
         'headers' =&gt; [
             'Accept' =&gt; 'application/json',
@@ -2068,7 +2141,7 @@ print_r(json_decode((string) $body));</code></pre>
 <pre><code class="language-python">import requests
 import json
 
-url = 'https://defichain-api.io/v1/vaults/address/omnis'
+url = 'https://defichain-api.io/v1/vaults/address/et'
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json'
@@ -2078,7 +2151,7 @@ response = requests.request('GET', url, headers=headers)
 response.json()</code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "https://defichain-api.io/v1/vaults/address/omnis"
+    "https://defichain-api.io/v1/vaults/address/et"
 );
 
 const headers = {
@@ -2100,11 +2173,10 @@ fetch(url, {
 
 <code class="language-json">{
     &quot;data&quot;: {
-        &quot;vaultId&quot;: &quot;4f2c56761b7a1b68e20f83b82372e203088453a86cce1f365fd2dcc1fc385d0c&quot;,
+        &quot;vaultId&quot;: &quot;4f2c56761b7a1b68e20f83b82372e203088453a86cce1f365fd2dcc1fc385d0d&quot;,
         &quot;loadSchemeId&quot;: &quot;C350&quot;,
         &quot;ownerAddress&quot;: &quot;tn2cpmFQJdKmrfzzKxeDoZ5wAWWUo5maED&quot;,
-        &quot;isUnderLiquidation&quot;: 0,
-        &quot;invalidPrice&quot;: 0,
+        &quot;state&quot;: &quot;active&quot;,
         &quot;collateralAmounts&quot;: [
             &quot;10000.00000000@DFI&quot;
         ],
@@ -2118,7 +2190,8 @@ fetch(url, {
         ],
         &quot;collateralValue&quot;: 40000,
         &quot;loanValue&quot;: 24553.00518339,
-        &quot;currentRatio&quot;: 163
+        &quot;interestValue&quot;: 0,
+        &quot;currentRatio&quot;: -1
     }
 }</code>
  </pre>
@@ -2166,6 +2239,201 @@ fetch(url, {
                data-component="url" required  hidden>
     <br>
             </p>
+                    </form>
+
+            <h2 id="vaults-GETv1-vaults-state--state-">list vaults by state</h2>
+
+<p>
+</p>
+
+<p>Get a list of vaults by the given state. Paginated with max 1000 elements per page.</p>
+
+<span id="example-requests-GETv1-vaults-state--state-">
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">curl --request GET \
+    --get "https://defichain-api.io/v1/vaults/state/active" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre>
+
+<pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'https://defichain-api.io/v1/vaults/state/active',
+    [
+        'headers' =&gt; [
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre>
+
+<pre><code class="language-python">import requests
+import json
+
+url = 'https://defichain-api.io/v1/vaults/state/active'
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('GET', url, headers=headers)
+response.json()</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "https://defichain-api.io/v1/vaults/state/active"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+</span>
+
+<span id="example-responses-GETv1-vaults-state--state-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;data&quot;: [
+        {
+            &quot;vaultId&quot;: &quot;4f2c56761b7a1b68e20f83b82372e203088453a86cce1f365fd2dcc1fc385d0c&quot;,
+            &quot;loadSchemeId&quot;: &quot;C350&quot;,
+            &quot;ownerAddress&quot;: &quot;tn2cpmFQJdKmrfzzKxeDoZ5wAWWUo5maED&quot;,
+            &quot;state&quot;: &quot;active&quot;,
+            &quot;collateralAmounts&quot;: [
+                &quot;10000.00000000@DFI&quot;
+            ],
+            &quot;loanAmounts&quot;: [
+                &quot;5.00148096@TSLA&quot;,
+                &quot;20003.25798370@DUSD&quot;
+            ],
+            &quot;interestAmounts&quot;: [
+                &quot;0.00148096@TSLA&quot;,
+                &quot;3.25798370@DUSD&quot;
+            ],
+            &quot;collateralValue&quot;: 40000,
+            &quot;loanValue&quot;: 24553.00518339,
+            &quot;interestValue&quot;: 4.60518339,
+            &quot;currentRatio&quot;: 163
+        },
+        {
+            &quot;vaultId&quot;: &quot;4f2c56761b7a1b68e20f83b82372e203088453a86cce1f365fd2dcc1fc385d0d&quot;,
+            &quot;loadSchemeId&quot;: &quot;C350&quot;,
+            &quot;ownerAddress&quot;: &quot;tn2cpmFQJdKmrfzzKxeDoZ5wAWWUo5maED&quot;,
+            &quot;state&quot;: &quot;active&quot;,
+            &quot;collateralAmounts&quot;: [
+                &quot;10000.00000000@DFI&quot;
+            ],
+            &quot;loanAmounts&quot;: [
+                &quot;5.00148096@TSLA&quot;,
+                &quot;20003.25798370@DUSD&quot;
+            ],
+            &quot;interestAmounts&quot;: [
+                &quot;0.00148096@TSLA&quot;,
+                &quot;3.25798370@DUSD&quot;
+            ],
+            &quot;collateralValue&quot;: 40000,
+            &quot;loanValue&quot;: 24553.00518339,
+            &quot;interestValue&quot;: 0,
+            &quot;currentRatio&quot;: -1
+        },
+        {
+            &quot;vaultId&quot;: &quot;5f2c56761b7a1b68e20f83b82372e203088453a86cce1f365fd2dcc1fc385d0d&quot;,
+            &quot;loadSchemeId&quot;: &quot;C350&quot;,
+            &quot;ownerAddress&quot;: &quot;tn2cpmFQJdKmrfzzKxeDoZ5wAWWUo5maED&quot;,
+            &quot;state&quot;: &quot;inactive&quot;,
+            &quot;collateralAmounts&quot;: [
+                &quot;10000.00000000@DFI&quot;
+            ],
+            &quot;loanAmounts&quot;: [
+                &quot;5.00148096@TSLA&quot;,
+                &quot;20003.25798370@DUSD&quot;
+            ],
+            &quot;interestAmounts&quot;: [
+                &quot;0.00148096@TSLA&quot;,
+                &quot;3.25798370@DUSD&quot;
+            ],
+            &quot;collateralValue&quot;: 40000,
+            &quot;loanValue&quot;: 24553.00518339,
+            &quot;interestValue&quot;: 0,
+            &quot;currentRatio&quot;: -1
+        }
+    ],
+    &quot;stats&quot;: {
+        &quot;count&quot;: 3,
+        &quot;count_active&quot;: 2,
+        &quot;schemes_used&quot;: {
+            &quot;C150&quot;: 0,
+            &quot;C175&quot;: 0,
+            &quot;C200&quot;: 0,
+            &quot;C350&quot;: 2,
+            &quot;C500&quot;: 0,
+            &quot;C1000&quot;: 0
+        },
+        &quot;sum_collateral_value&quot;: 120000,
+        &quot;sum_loan_value&quot;: 73659.01555017
+    },
+    &quot;links&quot;: {
+        &quot;first&quot;: &quot;http://defichain-api.test/v1/vaults?page=1&quot;,
+        &quot;last&quot;: &quot;http://defichain-api.test/v1/vaults?page=1&quot;,
+        &quot;prev&quot;: null,
+        &quot;next&quot;: null
+    },
+    &quot;meta&quot;: {
+        &quot;current_page&quot;: 1,
+        &quot;from&quot;: 1,
+        &quot;last_page&quot;: 1,
+        &quot;path&quot;: &quot;http://defichain-api.test/v1/vaults&quot;,
+        &quot;per_page&quot;: 5,
+        &quot;to&quot;: 3,
+        &quot;total&quot;: 3
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETv1-vaults-state--state-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETv1-vaults-state--state-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETv1-vaults-state--state-"></code></pre>
+</span>
+<span id="execution-error-GETv1-vaults-state--state-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETv1-vaults-state--state-"></code></pre>
+</span>
+<form id="form-GETv1-vaults-state--state-" data-method="GET"
+      data-path="v1/vaults/state/{state}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETv1-vaults-state--state-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>v1/vaults/state/{state}</code></b>
+        </p>
+                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>state</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="state"
+               data-endpoint="GETv1-vaults-state--state-"
+               data-component="url" required  hidden>
+    <br>
+<p>active or inactive</p>            </p>
                     </form>
 
     

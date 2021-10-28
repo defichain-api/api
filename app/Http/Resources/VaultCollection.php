@@ -37,11 +37,11 @@ class VaultCollection extends ResourceCollection
     {
         return cache()->remember('vault_stats', now()->addMinutes(10), function () {
             return [
-                'count'                   => Vault::count(),
-                'count_under_liquidation' => Vault::where('isUnderLiquidation', true)->count(),
-                'schemes_used'            => $this->loanSchemeStats(),
-                'sum_collateral_value'    => Vault::sum('collateralValue'),
-                'sum_loan_value'          => Vault::sum('loanValue'),
+                'count'                => Vault::count(),
+                'count_active'         => Vault::where('state', 'active')->count(),
+                'schemes_used'         => $this->loanSchemeStats(),
+                'sum_collateral_value' => Vault::sum('collateralValue'),
+                'sum_loan_value'       => Vault::sum('loanValue'),
             ];
         });
     }

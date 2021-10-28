@@ -12,13 +12,13 @@ use Str;
  * @property LoanScheme loanScheme
  * @property string     loanSchemeId
  * @property string     ownerAddress
- * @property boolean    isUnderLiquidation
- * @property boolean    invalidPrice
+ * @property string     state
  * @property array      collateralAmounts
  * @property array      loanAmounts
  * @property array      interestAmounts
  * @property float      collateralValue
  * @property float      loanValue
+ * @property float      interestValue
  * @property integer    currentRatio
  */
 class Vault extends Model
@@ -28,13 +28,13 @@ class Vault extends Model
         'vaultId',
         'loanSchemeId',
         'ownerAddress',
-        'isUnderLiquidation',
-        'invalidPrice',
+        'state',
         'collateralAmounts',
         'loanAmounts',
         'interestAmounts',
         'collateralValue',
         'loanValue',
+        'interestValue',
         'currentRatio',
     ];
     protected $casts = [
@@ -53,7 +53,7 @@ class Vault extends Model
         return $this->attributes['vaultId'];
     }
 
-    public function setLoanSchemeIdAttribute($value)
+    public function setLoanSchemeIdAttribute($value): void
     {
         if ($value instanceof LoanScheme) {
             $this->attributes['loanSchemeId'] = $value->id;
@@ -66,13 +66,8 @@ class Vault extends Model
         }
     }
 
-    public function setCurrentRatioAttribute($value)
+    public function isActive(): bool
     {
-        if (is_string($value)){
-            $this->attributes['currentRatio'] = (int)Str::replace('%', '',$value);
-        }
-        if (is_float($value) || is_int($value)) {
-            $this->attributes['currentRatio'] = $value;
-        }
+        return $this->state === 'active';
     }
 }

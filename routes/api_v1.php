@@ -46,6 +46,9 @@ Route::prefix('vaults')
         Route::get('/', [VaultController::class, 'list'])
             ->name('list')
             ->middleware(['paginated']);
+        Route::get('state/{state}', [VaultController::class, 'listState'])
+            ->name('state')
+            ->middleware(['paginated']);
         Route::post('update', [VaultController::class, 'update'])
             ->name('update');
         Route::get('id/{vaultId}', [VaultController::class, 'getByIdOrAddress'])

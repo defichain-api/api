@@ -13,14 +13,14 @@ class CreateVaultsTable extends Migration
             $table->string('vaultId')->unique();
             $table->foreignIdFor(LoanScheme::class, 'loanSchemeId');
             $table->string('ownerAddress')->index();
-            $table->boolean('isUnderLiquidation')->default(false)->index();
-            $table->boolean('invalidPrice')->default(false)->index();
+            $table->string('state')->default('active')->index();
             $table->json('collateralAmounts')->nullable();
             $table->json('loanAmounts')->nullable();
             $table->json('interestAmounts')->nullable();
             $table->float('collateralValue', 22, 8)->default(0);
             $table->float('loanValue', 22, 8)->default(0);
-            $table->integer('currentRatio')->default(0);
+            $table->float('interestValue', 22, 8)->default(0);
+            $table->integer('currentRatio')->default(-1);
             $table->timestamps();
         });
     }

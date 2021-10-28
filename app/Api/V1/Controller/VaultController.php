@@ -3,6 +3,7 @@
 namespace App\Api\V1\Controller;
 
 use App\Api\V1\DataTransformer\VaultTransformer;
+use App\Api\V1\Requests\ListVaultStateRequest;
 use App\Api\V1\Requests\UpdateVaultRequest;
 use App\Http\Resources\VaultCollection;
 use App\Http\Resources\VaultResource;
@@ -18,8 +19,10 @@ class VaultController
     /**
      * list all vaults
      *
-     * Get a list of all current loan scheme. Paginated with max 1000 elements per page.
+     * Get a list of all vaults. Paginated with max 1000 elements per page.
      * @group        Vaults
+     * @queryParam   stats boolean Get additional statistics. Default: true Example: <code>true</code>
+     * @queryParam   wtf boolean Get explainations for all returned values. Default: <code>false</code> Example: true
      * @responseFile storage/app/docu_responses/vault.multiple.json
      */
     public function list(Request $request): VaultCollection
@@ -28,6 +31,28 @@ class VaultController
             Vault::paginate(self::MAX_PAGESIZE),
             filter_var($request->query('stats', true), FILTER_VALIDATE_BOOLEAN),
             filter_var($request->query('wtf', false), FILTER_VALIDATE_BOOLEAN)
+        );
+    }
+
+    /**
+     * list vaults by state
+     *
+     * Get a list of vaults by the given state. Paginated with max 1000 elements per page.
+     * @group        Vaults
+     * @urlParam     state string required active or inactive Example: active
+     * @responseFile storage/app/docu_responses/vault.multiple.json
+     */
+    public function listState(string $state)
+    {
+        if (!in_array($state, ['active', 'inactive'])) {
+            return response()->json([
+                'message' => 'vault state not found',
+            ], JsonResponse::HTTP_BAD_REQUEST);
+        }
+
+        return new VaultCollection(
+            Vault::where('state', $state)->paginate(self::MAX_PAGESIZE),
+            false, false
         );
     }
 
@@ -47,7 +72,7 @@ class VaultController
     /**
      * get vault
      *
-     * Get a vault by a given vault id or owner address
+     * Get a vault by a given vault id or owner address.
      * @group        Vaults
      * @responseFile storage/app/docu_responses/vault.single.json
      * @responseFile sstatus=400 torage/app/docu_responses/vault.not_found.json

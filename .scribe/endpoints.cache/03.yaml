@@ -9,13 +9,25 @@ endpoints:
     uri: v1/vaults
     metadata:
       title: 'list all vaults'
-      description: 'Get a list of all current loan scheme. Paginated with max 1000 elements per page.'
+      description: 'Get a list of all vaults. Paginated with max 1000 elements per page.'
       authenticated: false
     headers:
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
-    queryParameters: []
+    queryParameters:
+      stats:
+        name: stats
+        description: 'Get additional statistics. Default: true'
+        required: false
+        example: true
+        type: boolean
+      wtf:
+        name: wtf
+        description: 'Get explainations for all returned values. Default: <code>false</code>'
+        required: false
+        example: true
+        type: boolean
     bodyParameters: []
     responses:
       -
@@ -24,32 +36,10 @@ endpoints:
           {
               "data": [
                   {
-                      "vaultId": "4f2c55521b7a1b68e20f83b82372e202088453a86cce1f365fd2dcc1fc385d0a",
-                      "loadSchemeId": "C150",
-                      "ownerAddress": "tn2cpmFQJdKmrfzzKxeDoZ5wAWWUo5maED",
-                      "isUnderLiquidation": 0,
-                      "invalidPrice": 0,
-                      "collateralAmounts": [
-                          "10000.00000000@DFI"
-                      ],
-                      "loanAmounts": [
-                          "5.00148096@TSLA",
-                          "20003.25798370@DUSD"
-                      ],
-                      "interestAmounts": [
-                          "0.00148096@TSLA",
-                          "3.25798370@DUSD"
-                      ],
-                      "collateralValue": 40000,
-                      "loanValue": 24553.00518339,
-                      "currentRatio": 163
-                  },
-                  {
                       "vaultId": "4f2c56761b7a1b68e20f83b82372e203088453a86cce1f365fd2dcc1fc385d0c",
                       "loadSchemeId": "C350",
                       "ownerAddress": "tn2cpmFQJdKmrfzzKxeDoZ5wAWWUo5maED",
-                      "isUnderLiquidation": 0,
-                      "invalidPrice": 0,
+                      "state": "active",
                       "collateralAmounts": [
                           "10000.00000000@DFI"
                       ],
@@ -63,22 +53,65 @@ endpoints:
                       ],
                       "collateralValue": 40000,
                       "loanValue": 24553.00518339,
+                      "interestValue": 4.60518339,
                       "currentRatio": 163
+                  },
+                  {
+                      "vaultId": "4f2c56761b7a1b68e20f83b82372e203088453a86cce1f365fd2dcc1fc385d0d",
+                      "loadSchemeId": "C350",
+                      "ownerAddress": "tn2cpmFQJdKmrfzzKxeDoZ5wAWWUo5maED",
+                      "state": "active",
+                      "collateralAmounts": [
+                          "10000.00000000@DFI"
+                      ],
+                      "loanAmounts": [
+                          "5.00148096@TSLA",
+                          "20003.25798370@DUSD"
+                      ],
+                      "interestAmounts": [
+                          "0.00148096@TSLA",
+                          "3.25798370@DUSD"
+                      ],
+                      "collateralValue": 40000,
+                      "loanValue": 24553.00518339,
+                      "interestValue": 0,
+                      "currentRatio": -1
+                  },
+                  {
+                      "vaultId": "5f2c56761b7a1b68e20f83b82372e203088453a86cce1f365fd2dcc1fc385d0d",
+                      "loadSchemeId": "C350",
+                      "ownerAddress": "tn2cpmFQJdKmrfzzKxeDoZ5wAWWUo5maED",
+                      "state": "inactive",
+                      "collateralAmounts": [
+                          "10000.00000000@DFI"
+                      ],
+                      "loanAmounts": [
+                          "5.00148096@TSLA",
+                          "20003.25798370@DUSD"
+                      ],
+                      "interestAmounts": [
+                          "0.00148096@TSLA",
+                          "3.25798370@DUSD"
+                      ],
+                      "collateralValue": 40000,
+                      "loanValue": 24553.00518339,
+                      "interestValue": 0,
+                      "currentRatio": -1
                   }
               ],
               "stats": {
-                  "count": 2,
-                  "count_under_liquidation": 0,
+                  "count": 3,
+                  "count_active": 2,
                   "schemes_used": {
-                      "C150": 1,
+                      "C150": 0,
                       "C175": 0,
                       "C200": 0,
-                      "C350": 1,
+                      "C350": 2,
                       "C500": 0,
                       "C1000": 0
                   },
-                  "sum_collateral_value": 80000,
-                  "sum_loan_value": 49106.01036678
+                  "sum_collateral_value": 120000,
+                  "sum_loan_value": 73659.01555017
               },
               "links": {
                   "first": "http://defichain-api.test/v1/vaults?page=1",
@@ -92,8 +125,8 @@ endpoints:
                   "last_page": 1,
                   "path": "http://defichain-api.test/v1/vaults",
                   "per_page": 5,
-                  "to": 2,
-                  "total": 2
+                  "to": 3,
+                  "total": 3
               }
           }
         headers: []
@@ -105,7 +138,7 @@ endpoints:
     uri: 'v1/vaults/id/{vaultId}'
     metadata:
       title: 'get vault'
-      description: 'Get a vault by a given vault id or owner address'
+      description: 'Get a vault by a given vault id or owner address.'
       authenticated: false
     headers:
       Content-Type: application/json
@@ -115,7 +148,7 @@ endpoints:
         name: vaultId
         description: ''
         required: true
-        example: est
+        example: non
         type: string
     queryParameters: []
     bodyParameters: []
@@ -125,11 +158,10 @@ endpoints:
         content: |
           {
               "data": {
-                  "vaultId": "4f2c56761b7a1b68e20f83b82372e203088453a86cce1f365fd2dcc1fc385d0c",
+                  "vaultId": "4f2c56761b7a1b68e20f83b82372e203088453a86cce1f365fd2dcc1fc385d0d",
                   "loadSchemeId": "C350",
                   "ownerAddress": "tn2cpmFQJdKmrfzzKxeDoZ5wAWWUo5maED",
-                  "isUnderLiquidation": 0,
-                  "invalidPrice": 0,
+                  "state": "active",
                   "collateralAmounts": [
                       "10000.00000000@DFI"
                   ],
@@ -143,7 +175,8 @@ endpoints:
                   ],
                   "collateralValue": 40000,
                   "loanValue": 24553.00518339,
-                  "currentRatio": 163
+                  "interestValue": 0,
+                  "currentRatio": -1
               }
           }
         headers: []
@@ -163,7 +196,7 @@ endpoints:
     uri: 'v1/vaults/address/{ownerAddress}'
     metadata:
       title: 'get vault'
-      description: 'Get a vault by a given vault id or owner address'
+      description: 'Get a vault by a given vault id or owner address.'
       authenticated: false
     headers:
       Content-Type: application/json
@@ -173,7 +206,7 @@ endpoints:
         name: ownerAddress
         description: ''
         required: true
-        example: omnis
+        example: et
         type: string
     queryParameters: []
     bodyParameters: []
@@ -183,11 +216,10 @@ endpoints:
         content: |
           {
               "data": {
-                  "vaultId": "4f2c56761b7a1b68e20f83b82372e203088453a86cce1f365fd2dcc1fc385d0c",
+                  "vaultId": "4f2c56761b7a1b68e20f83b82372e203088453a86cce1f365fd2dcc1fc385d0d",
                   "loadSchemeId": "C350",
                   "ownerAddress": "tn2cpmFQJdKmrfzzKxeDoZ5wAWWUo5maED",
-                  "isUnderLiquidation": 0,
-                  "invalidPrice": 0,
+                  "state": "active",
                   "collateralAmounts": [
                       "10000.00000000@DFI"
                   ],
@@ -201,7 +233,8 @@ endpoints:
                   ],
                   "collateralValue": 40000,
                   "loanValue": 24553.00518339,
-                  "currentRatio": 163
+                  "interestValue": 0,
+                  "currentRatio": -1
               }
           }
         headers: []
@@ -214,4 +247,127 @@ endpoints:
           }
         headers: []
         description: '400'
+    responseFields: []
+  -
+    httpMethods:
+      - GET
+    uri: 'v1/vaults/state/{state}'
+    metadata:
+      title: 'list vaults by state'
+      description: 'Get a list of vaults by the given state. Paginated with max 1000 elements per page.'
+      authenticated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      state:
+        name: state
+        description: 'active or inactive'
+        required: true
+        example: active
+        type: string
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: |
+          {
+              "data": [
+                  {
+                      "vaultId": "4f2c56761b7a1b68e20f83b82372e203088453a86cce1f365fd2dcc1fc385d0c",
+                      "loadSchemeId": "C350",
+                      "ownerAddress": "tn2cpmFQJdKmrfzzKxeDoZ5wAWWUo5maED",
+                      "state": "active",
+                      "collateralAmounts": [
+                          "10000.00000000@DFI"
+                      ],
+                      "loanAmounts": [
+                          "5.00148096@TSLA",
+                          "20003.25798370@DUSD"
+                      ],
+                      "interestAmounts": [
+                          "0.00148096@TSLA",
+                          "3.25798370@DUSD"
+                      ],
+                      "collateralValue": 40000,
+                      "loanValue": 24553.00518339,
+                      "interestValue": 4.60518339,
+                      "currentRatio": 163
+                  },
+                  {
+                      "vaultId": "4f2c56761b7a1b68e20f83b82372e203088453a86cce1f365fd2dcc1fc385d0d",
+                      "loadSchemeId": "C350",
+                      "ownerAddress": "tn2cpmFQJdKmrfzzKxeDoZ5wAWWUo5maED",
+                      "state": "active",
+                      "collateralAmounts": [
+                          "10000.00000000@DFI"
+                      ],
+                      "loanAmounts": [
+                          "5.00148096@TSLA",
+                          "20003.25798370@DUSD"
+                      ],
+                      "interestAmounts": [
+                          "0.00148096@TSLA",
+                          "3.25798370@DUSD"
+                      ],
+                      "collateralValue": 40000,
+                      "loanValue": 24553.00518339,
+                      "interestValue": 0,
+                      "currentRatio": -1
+                  },
+                  {
+                      "vaultId": "5f2c56761b7a1b68e20f83b82372e203088453a86cce1f365fd2dcc1fc385d0d",
+                      "loadSchemeId": "C350",
+                      "ownerAddress": "tn2cpmFQJdKmrfzzKxeDoZ5wAWWUo5maED",
+                      "state": "inactive",
+                      "collateralAmounts": [
+                          "10000.00000000@DFI"
+                      ],
+                      "loanAmounts": [
+                          "5.00148096@TSLA",
+                          "20003.25798370@DUSD"
+                      ],
+                      "interestAmounts": [
+                          "0.00148096@TSLA",
+                          "3.25798370@DUSD"
+                      ],
+                      "collateralValue": 40000,
+                      "loanValue": 24553.00518339,
+                      "interestValue": 0,
+                      "currentRatio": -1
+                  }
+              ],
+              "stats": {
+                  "count": 3,
+                  "count_active": 2,
+                  "schemes_used": {
+                      "C150": 0,
+                      "C175": 0,
+                      "C200": 0,
+                      "C350": 2,
+                      "C500": 0,
+                      "C1000": 0
+                  },
+                  "sum_collateral_value": 120000,
+                  "sum_loan_value": 73659.01555017
+              },
+              "links": {
+                  "first": "http://defichain-api.test/v1/vaults?page=1",
+                  "last": "http://defichain-api.test/v1/vaults?page=1",
+                  "prev": null,
+                  "next": null
+              },
+              "meta": {
+                  "current_page": 1,
+                  "from": 1,
+                  "last_page": 1,
+                  "path": "http://defichain-api.test/v1/vaults",
+                  "per_page": 5,
+                  "to": 3,
+                  "total": 3
+              }
+          }
+        headers: []
+        description: '200'
     responseFields: []

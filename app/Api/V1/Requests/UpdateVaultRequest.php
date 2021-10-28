@@ -9,17 +9,17 @@ class UpdateVaultRequest extends ApiRequest
     public function rules(): array
     {
         return [
-            '*.vaultId'            => ['required', 'string'],
-            '*.loanSchemeId'       => ['required', 'string'],
-            '*.ownerAddress'       => ['required', 'string'],
-            '*.isUnderLiquidation' => ['required', 'boolean'],
-            '*.invalidPrice'       => ['required', 'boolean'],
-            '*.collateralAmounts'  => ['required', 'array'],
-            '*.loanAmounts'        => ['required', 'array'],
-            '*.interestAmounts'    => ['required', 'array'],
-            '*.collateralValue'    => ['required', 'numeric'],
-            '*.loanValue'          => ['required', 'numeric'],
-            '*.currentRatio'       => ['required', 'string'],
+            '*.vaultId'           => ['required', 'string'],
+            '*.loanSchemeId'      => ['required', 'string'],
+            '*.ownerAddress'      => ['required', 'string'],
+            '*.state'             => ['required', 'string'],
+            '*.collateralAmounts' => ['required', 'array'],
+            '*.loanAmounts'       => ['required', 'array'],
+            '*.interestAmounts'   => ['required', 'array'],
+            '*.collateralValue'   => ['required', 'numeric'],
+            '*.loanValue'         => ['required', 'numeric'],
+            '*.interestValue'     => ['sometimes'],
+            '*.currentRatio'      => ['required', 'numeric'],
         ];
     }
 
