@@ -2,7 +2,9 @@
 
 namespace App\Api\V1\Requests;
 
+use App\Api\Enum\VaultStates;
 use App\Http\Requests\ApiRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateVaultRequest extends ApiRequest
 {
@@ -12,7 +14,7 @@ class UpdateVaultRequest extends ApiRequest
             '*.vaultId'           => ['required', 'string'],
             '*.loanSchemeId'      => ['required', 'string'],
             '*.ownerAddress'      => ['required', 'string'],
-            '*.state'             => ['required', 'string'],
+            '*.state'             => ['required', 'string', Rule::in(VaultStates::ALL)],
             '*.collateralAmounts' => ['sometimes', 'array'],
             '*.loanAmounts'       => ['sometimes', 'array'],
             '*.interestAmounts'   => ['sometimes', 'array'],

@@ -2,6 +2,7 @@
 
 namespace App\Api\V1\Controller;
 
+use App\Api\Enum\VaultStates;
 use App\Api\V1\DataTransformer\VaultTransformer;
 use App\Api\V1\Requests\ListVaultStateRequest;
 use App\Api\V1\Requests\UpdateVaultRequest;
@@ -44,7 +45,7 @@ class VaultController
      */
     public function listState(string $state)
     {
-        if (!in_array($state, ['active', 'inactive'])) {
+        if (!in_array($state, VaultStates::ALL)) {
             return response()->json([
                 'message' => 'vault state not found',
             ], JsonResponse::HTTP_BAD_REQUEST);
