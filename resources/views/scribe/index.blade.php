@@ -174,6 +174,194 @@ access-control-allow-origin: *
         </p>
                     </form>
 
+        <h1 id="fixed-price-intervals">Fixed Price Intervals</h1>
+
+    
+
+            <h2 id="fixed-price-intervals-GETv1-fixed_price_intervals">list Fixed Price Intervals</h2>
+
+<p>
+</p>
+
+<p>Get a list of all Fixed Price Intervals.</p>
+
+<span id="example-requests-GETv1-fixed_price_intervals">
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">curl --request GET \
+    --get "https://defichain-api.io/v1/fixed_price_intervals" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre>
+
+<pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'https://defichain-api.io/v1/fixed_price_intervals',
+    [
+        'headers' =&gt; [
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre>
+
+<pre><code class="language-python">import requests
+import json
+
+url = 'https://defichain-api.io/v1/fixed_price_intervals'
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('GET', url, headers=headers)
+response.json()</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "https://defichain-api.io/v1/fixed_price_intervals"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+</span>
+
+<span id="example-responses-GETv1-fixed_price_intervals">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;data&quot;: [
+        {
+            &quot;priceFeedId&quot;: &quot;BTC/USD&quot;,
+            &quot;activePrice&quot;: 60000,
+            &quot;nextPrice&quot;: 60000,
+            &quot;timestamp&quot;: 1635422996,
+            &quot;valid_from&quot;: &quot;2021-10-28 12:09:56&quot;,
+            &quot;isLive&quot;: true
+        },
+        {
+            &quot;priceFeedId&quot;: &quot;DFI/USD&quot;,
+            &quot;activePrice&quot;: 3,
+            &quot;nextPrice&quot;: 3,
+            &quot;timestamp&quot;: 1635422996,
+            &quot;valid_from&quot;: &quot;2021-10-28 12:09:56&quot;,
+            &quot;isLive&quot;: true
+        },
+        {
+            &quot;priceFeedId&quot;: &quot;DUSD/USD&quot;,
+            &quot;activePrice&quot;: 1,
+            &quot;nextPrice&quot;: 1,
+            &quot;timestamp&quot;: 1635422996,
+            &quot;valid_from&quot;: &quot;2021-10-28 12:09:56&quot;,
+            &quot;isLive&quot;: true
+        },
+        {
+            &quot;priceFeedId&quot;: &quot;ETH/USD&quot;,
+            &quot;activePrice&quot;: 4000,
+            &quot;nextPrice&quot;: 4000,
+            &quot;timestamp&quot;: 1635422996,
+            &quot;valid_from&quot;: &quot;2021-10-28 12:09:56&quot;,
+            &quot;isLive&quot;: true
+        },
+        {
+            &quot;priceFeedId&quot;: &quot;FB/USD&quot;,
+            &quot;activePrice&quot;: 314.22,
+            &quot;nextPrice&quot;: 312.22,
+            &quot;timestamp&quot;: 1635422996,
+            &quot;valid_from&quot;: &quot;2021-10-28 12:09:56&quot;,
+            &quot;isLive&quot;: true
+        },
+        {
+            &quot;priceFeedId&quot;: &quot;GOOGL/USD&quot;,
+            &quot;activePrice&quot;: 2924.35,
+            &quot;nextPrice&quot;: 2924.35,
+            &quot;timestamp&quot;: 1635422996,
+            &quot;valid_from&quot;: &quot;2021-10-28 12:09:56&quot;,
+            &quot;isLive&quot;: true
+        },
+        {
+            &quot;priceFeedId&quot;: &quot;MSFT/USD&quot;,
+            &quot;activePrice&quot;: 323.17,
+            &quot;nextPrice&quot;: 323.17,
+            &quot;timestamp&quot;: 1635422996,
+            &quot;valid_from&quot;: &quot;2021-10-28 12:09:56&quot;,
+            &quot;isLive&quot;: true
+        },
+        {
+            &quot;priceFeedId&quot;: &quot;TSLA/USD&quot;,
+            &quot;activePrice&quot;: 1037.86,
+            &quot;nextPrice&quot;: 1037.86,
+            &quot;timestamp&quot;: 1635422996,
+            &quot;valid_from&quot;: &quot;2021-10-28 12:09:56&quot;,
+            &quot;isLive&quot;: true
+        },
+        {
+            &quot;priceFeedId&quot;: &quot;TWTR/USD&quot;,
+            &quot;activePrice&quot;: 54.81,
+            &quot;nextPrice&quot;: 54.81,
+            &quot;timestamp&quot;: 1635422996,
+            &quot;valid_from&quot;: &quot;2021-10-28 12:09:56&quot;,
+            &quot;isLive&quot;: true
+        }
+    ],
+    &quot;stats&quot;: {
+        &quot;count_prices&quot;: 9
+    },
+    &quot;links&quot;: {
+        &quot;first&quot;: &quot;http://defichain-api.test/v1/fixed_price_intervals?page=1&quot;,
+        &quot;last&quot;: &quot;http://defichain-api.test/v1/fixed_price_intervals?page=1&quot;,
+        &quot;prev&quot;: null,
+        &quot;next&quot;: null
+    },
+    &quot;meta&quot;: {
+        &quot;current_page&quot;: 1,
+        &quot;from&quot;: 1,
+        &quot;last_page&quot;: 1,
+        &quot;path&quot;: &quot;http://defichain-api.test/v1/fixed_price_intervals&quot;,
+        &quot;per_page&quot;: 100,
+        &quot;to&quot;: 9,
+        &quot;total&quot;: 9
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETv1-fixed_price_intervals" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETv1-fixed_price_intervals"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETv1-fixed_price_intervals"></code></pre>
+</span>
+<span id="execution-error-GETv1-fixed_price_intervals" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETv1-fixed_price_intervals"></code></pre>
+</span>
+<form id="form-GETv1-fixed_price_intervals" data-method="GET"
+      data-path="v1/fixed_price_intervals"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETv1-fixed_price_intervals', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>v1/fixed_price_intervals</code></b>
+        </p>
+                    </form>
+
         <h1 id="loan-scheme">Loan Scheme</h1>
 
     
@@ -1991,13 +2179,13 @@ fetch(url, {
 
 
 <pre><code class="language-bash">curl --request GET \
-    --get "https://defichain-api.io/v1/vaults/id/non" \
+    --get "https://defichain-api.io/v1/vaults/id/eos" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>
 
 <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;get(
-    'https://defichain-api.io/v1/vaults/id/non',
+    'https://defichain-api.io/v1/vaults/id/eos',
     [
         'headers' =&gt; [
             'Accept' =&gt; 'application/json',
@@ -2010,7 +2198,7 @@ print_r(json_decode((string) $body));</code></pre>
 <pre><code class="language-python">import requests
 import json
 
-url = 'https://defichain-api.io/v1/vaults/id/non'
+url = 'https://defichain-api.io/v1/vaults/id/eos'
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json'
@@ -2020,7 +2208,7 @@ response = requests.request('GET', url, headers=headers)
 response.json()</code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "https://defichain-api.io/v1/vaults/id/non"
+    "https://defichain-api.io/v1/vaults/id/eos"
 );
 
 const headers = {
@@ -2122,13 +2310,13 @@ fetch(url, {
 
 
 <pre><code class="language-bash">curl --request GET \
-    --get "https://defichain-api.io/v1/vaults/address/et" \
+    --get "https://defichain-api.io/v1/vaults/address/ipsum" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>
 
 <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;get(
-    'https://defichain-api.io/v1/vaults/address/et',
+    'https://defichain-api.io/v1/vaults/address/ipsum',
     [
         'headers' =&gt; [
             'Accept' =&gt; 'application/json',
@@ -2141,7 +2329,7 @@ print_r(json_decode((string) $body));</code></pre>
 <pre><code class="language-python">import requests
 import json
 
-url = 'https://defichain-api.io/v1/vaults/address/et'
+url = 'https://defichain-api.io/v1/vaults/address/ipsum'
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json'
@@ -2151,7 +2339,7 @@ response = requests.request('GET', url, headers=headers)
 response.json()</code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "https://defichain-api.io/v1/vaults/address/et"
+    "https://defichain-api.io/v1/vaults/address/ipsum"
 );
 
 const headers = {

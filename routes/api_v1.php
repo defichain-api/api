@@ -1,6 +1,7 @@
 <?php
 
 use App\Api\Enum\MasternodeStates;
+use App\Api\V1\Controller\FixedPriceIntervalController;
 use App\Api\V1\Controller\LoanSchemeController;
 use App\Api\V1\Controller\MasternodeController;
 use App\Api\V1\Controller\IndexController;
@@ -63,5 +64,15 @@ Route::prefix('loan_schemes')
         Route::get('/', [LoanSchemeController::class, 'list'])
             ->name('list');
         Route::post('update', [LoanSchemeController::class, 'update'])
+            ->name('update');
+    });
+
+Route::prefix('fixed_price_intervals')
+    ->name('fixed_price_intervals.')
+    ->group(function () {
+        Route::get('/', [FixedPriceIntervalController::class, 'list'])
+            ->name('list')
+            ->middleware(['paginated']);
+        Route::post('update', [FixedPriceIntervalController::class, 'update'])
             ->name('update');
     });
