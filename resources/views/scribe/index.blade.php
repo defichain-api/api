@@ -48,7 +48,7 @@
                             <li><a href="http://github.com/knuckleswtf/scribe">Documentation powered by Scribe ✍</a></li>
                     </ul>
             <ul class="toc-footer" id="last-updated">
-            <li>Last updated: October 28 2021</li>
+            <li>Last updated: November 3 2021</li>
         </ul>
 </div>
 <div class="page-wrapper">
@@ -2026,7 +2026,8 @@ fetch(url, {
             &quot;collateralValue&quot;: 40000,
             &quot;loanValue&quot;: 24553.00518339,
             &quot;interestValue&quot;: 4.60518339,
-            &quot;currentRatio&quot;: 163
+            &quot;informativeRatio&quot;: 149.44494195,
+            &quot;collateralRatio&quot;: 123
         },
         {
             &quot;vaultId&quot;: &quot;4f2c56761b7a1b68e20f83b82372e203088453a86cce1f365fd2dcc1fc385d0d&quot;,
@@ -2047,32 +2048,12 @@ fetch(url, {
             &quot;collateralValue&quot;: 40000,
             &quot;loanValue&quot;: 24553.00518339,
             &quot;interestValue&quot;: 0,
-            &quot;currentRatio&quot;: -1
-        },
-        {
-            &quot;vaultId&quot;: &quot;5f2c56761b7a1b68e20f83b82372e203088453a86cce1f365fd2dcc1fc385d0d&quot;,
-            &quot;loadSchemeId&quot;: &quot;C350&quot;,
-            &quot;ownerAddress&quot;: &quot;tn2cpmFQJdKmrfzzKxeDoZ5wAWWUo5maED&quot;,
-            &quot;state&quot;: &quot;inactive&quot;,
-            &quot;collateralAmounts&quot;: [
-                &quot;10000.00000000@DFI&quot;
-            ],
-            &quot;loanAmounts&quot;: [
-                &quot;5.00148096@TSLA&quot;,
-                &quot;20003.25798370@DUSD&quot;
-            ],
-            &quot;interestAmounts&quot;: [
-                &quot;0.00148096@TSLA&quot;,
-                &quot;3.25798370@DUSD&quot;
-            ],
-            &quot;collateralValue&quot;: 40000,
-            &quot;loanValue&quot;: 24553.00518339,
-            &quot;interestValue&quot;: 0,
-            &quot;currentRatio&quot;: -1
+            &quot;informativeRatio&quot;: 143.1234,
+            &quot;collateralRatio&quot;: -1
         }
     ],
     &quot;stats&quot;: {
-        &quot;count&quot;: 3,
+        &quot;count&quot;: 2,
         &quot;count_active&quot;: 2,
         &quot;schemes_used&quot;: {
             &quot;C150&quot;: 0,
@@ -2082,8 +2063,8 @@ fetch(url, {
             &quot;C500&quot;: 0,
             &quot;C1000&quot;: 0
         },
-        &quot;sum_collateral_value&quot;: 120000,
-        &quot;sum_loan_value&quot;: 73659.01555017
+        &quot;sum_collateral_value&quot;: 80000,
+        &quot;sum_loan_value&quot;: 49106.01036678
     },
     &quot;links&quot;: {
         &quot;first&quot;: &quot;http://defichain-api.test/v1/vaults?page=1&quot;,
@@ -2097,8 +2078,8 @@ fetch(url, {
         &quot;last_page&quot;: 1,
         &quot;path&quot;: &quot;http://defichain-api.test/v1/vaults&quot;,
         &quot;per_page&quot;: 5,
-        &quot;to&quot;: 3,
-        &quot;total&quot;: 3
+        &quot;to&quot;: 2,
+        &quot;total&quot;: 2
     }
 }</code>
  </pre>
@@ -2179,13 +2160,13 @@ fetch(url, {
 
 
 <pre><code class="language-bash">curl --request GET \
-    --get "https://defichain-api.io/v1/vaults/id/eos" \
+    --get "https://defichain-api.io/v1/vaults/id/unde" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>
 
 <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;get(
-    'https://defichain-api.io/v1/vaults/id/eos',
+    'https://defichain-api.io/v1/vaults/id/unde',
     [
         'headers' =&gt; [
             'Accept' =&gt; 'application/json',
@@ -2198,7 +2179,7 @@ print_r(json_decode((string) $body));</code></pre>
 <pre><code class="language-python">import requests
 import json
 
-url = 'https://defichain-api.io/v1/vaults/id/eos'
+url = 'https://defichain-api.io/v1/vaults/id/unde'
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json'
@@ -2208,7 +2189,7 @@ response = requests.request('GET', url, headers=headers)
 response.json()</code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "https://defichain-api.io/v1/vaults/id/eos"
+    "https://defichain-api.io/v1/vaults/id/unde"
 );
 
 const headers = {
@@ -2230,7 +2211,7 @@ fetch(url, {
 
 <code class="language-json">{
     &quot;data&quot;: {
-        &quot;vaultId&quot;: &quot;4f2c56761b7a1b68e20f83b82372e203088453a86cce1f365fd2dcc1fc385d0d&quot;,
+        &quot;vaultId&quot;: &quot;4f2c56761b7a1b68e20f83b82372e203088453a86cce1f365fd2dcc1fc385d0c&quot;,
         &quot;loadSchemeId&quot;: &quot;C350&quot;,
         &quot;ownerAddress&quot;: &quot;tn2cpmFQJdKmrfzzKxeDoZ5wAWWUo5maED&quot;,
         &quot;state&quot;: &quot;active&quot;,
@@ -2247,8 +2228,9 @@ fetch(url, {
         ],
         &quot;collateralValue&quot;: 40000,
         &quot;loanValue&quot;: 24553.00518339,
-        &quot;interestValue&quot;: 0,
-        &quot;currentRatio&quot;: -1
+        &quot;interestValue&quot;: 4.60518339,
+        &quot;informativeRatio&quot;: 149.44494195,
+        &quot;collateralRatio&quot;: 123
     }
 }</code>
  </pre>
@@ -2310,13 +2292,13 @@ fetch(url, {
 
 
 <pre><code class="language-bash">curl --request GET \
-    --get "https://defichain-api.io/v1/vaults/address/ipsum" \
+    --get "https://defichain-api.io/v1/vaults/address/error" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>
 
 <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;get(
-    'https://defichain-api.io/v1/vaults/address/ipsum',
+    'https://defichain-api.io/v1/vaults/address/error',
     [
         'headers' =&gt; [
             'Accept' =&gt; 'application/json',
@@ -2329,7 +2311,7 @@ print_r(json_decode((string) $body));</code></pre>
 <pre><code class="language-python">import requests
 import json
 
-url = 'https://defichain-api.io/v1/vaults/address/ipsum'
+url = 'https://defichain-api.io/v1/vaults/address/error'
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json'
@@ -2339,7 +2321,7 @@ response = requests.request('GET', url, headers=headers)
 response.json()</code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "https://defichain-api.io/v1/vaults/address/ipsum"
+    "https://defichain-api.io/v1/vaults/address/error"
 );
 
 const headers = {
@@ -2361,7 +2343,7 @@ fetch(url, {
 
 <code class="language-json">{
     &quot;data&quot;: {
-        &quot;vaultId&quot;: &quot;4f2c56761b7a1b68e20f83b82372e203088453a86cce1f365fd2dcc1fc385d0d&quot;,
+        &quot;vaultId&quot;: &quot;4f2c56761b7a1b68e20f83b82372e203088453a86cce1f365fd2dcc1fc385d0c&quot;,
         &quot;loadSchemeId&quot;: &quot;C350&quot;,
         &quot;ownerAddress&quot;: &quot;tn2cpmFQJdKmrfzzKxeDoZ5wAWWUo5maED&quot;,
         &quot;state&quot;: &quot;active&quot;,
@@ -2378,8 +2360,9 @@ fetch(url, {
         ],
         &quot;collateralValue&quot;: 40000,
         &quot;loanValue&quot;: 24553.00518339,
-        &quot;interestValue&quot;: 0,
-        &quot;currentRatio&quot;: -1
+        &quot;interestValue&quot;: 4.60518339,
+        &quot;informativeRatio&quot;: 149.44494195,
+        &quot;collateralRatio&quot;: 123
     }
 }</code>
  </pre>
@@ -2511,7 +2494,8 @@ fetch(url, {
             &quot;collateralValue&quot;: 40000,
             &quot;loanValue&quot;: 24553.00518339,
             &quot;interestValue&quot;: 4.60518339,
-            &quot;currentRatio&quot;: 163
+            &quot;informativeRatio&quot;: 149.44494195,
+            &quot;collateralRatio&quot;: 123
         },
         {
             &quot;vaultId&quot;: &quot;4f2c56761b7a1b68e20f83b82372e203088453a86cce1f365fd2dcc1fc385d0d&quot;,
@@ -2532,32 +2516,12 @@ fetch(url, {
             &quot;collateralValue&quot;: 40000,
             &quot;loanValue&quot;: 24553.00518339,
             &quot;interestValue&quot;: 0,
-            &quot;currentRatio&quot;: -1
-        },
-        {
-            &quot;vaultId&quot;: &quot;5f2c56761b7a1b68e20f83b82372e203088453a86cce1f365fd2dcc1fc385d0d&quot;,
-            &quot;loadSchemeId&quot;: &quot;C350&quot;,
-            &quot;ownerAddress&quot;: &quot;tn2cpmFQJdKmrfzzKxeDoZ5wAWWUo5maED&quot;,
-            &quot;state&quot;: &quot;inactive&quot;,
-            &quot;collateralAmounts&quot;: [
-                &quot;10000.00000000@DFI&quot;
-            ],
-            &quot;loanAmounts&quot;: [
-                &quot;5.00148096@TSLA&quot;,
-                &quot;20003.25798370@DUSD&quot;
-            ],
-            &quot;interestAmounts&quot;: [
-                &quot;0.00148096@TSLA&quot;,
-                &quot;3.25798370@DUSD&quot;
-            ],
-            &quot;collateralValue&quot;: 40000,
-            &quot;loanValue&quot;: 24553.00518339,
-            &quot;interestValue&quot;: 0,
-            &quot;currentRatio&quot;: -1
+            &quot;informativeRatio&quot;: 143.1234,
+            &quot;collateralRatio&quot;: -1
         }
     ],
     &quot;stats&quot;: {
-        &quot;count&quot;: 3,
+        &quot;count&quot;: 2,
         &quot;count_active&quot;: 2,
         &quot;schemes_used&quot;: {
             &quot;C150&quot;: 0,
@@ -2567,8 +2531,8 @@ fetch(url, {
             &quot;C500&quot;: 0,
             &quot;C1000&quot;: 0
         },
-        &quot;sum_collateral_value&quot;: 120000,
-        &quot;sum_loan_value&quot;: 73659.01555017
+        &quot;sum_collateral_value&quot;: 80000,
+        &quot;sum_loan_value&quot;: 49106.01036678
     },
     &quot;links&quot;: {
         &quot;first&quot;: &quot;http://defichain-api.test/v1/vaults?page=1&quot;,
@@ -2582,8 +2546,8 @@ fetch(url, {
         &quot;last_page&quot;: 1,
         &quot;path&quot;: &quot;http://defichain-api.test/v1/vaults&quot;,
         &quot;per_page&quot;: 5,
-        &quot;to&quot;: 3,
-        &quot;total&quot;: 3
+        &quot;to&quot;: 2,
+        &quot;total&quot;: 2
     }
 }</code>
  </pre>

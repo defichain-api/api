@@ -52,7 +52,8 @@ endpoints:
                       "collateralValue": 40000,
                       "loanValue": 24553.00518339,
                       "interestValue": 4.60518339,
-                      "currentRatio": 163
+                      "informativeRatio": 149.44494195,
+                      "collateralRatio": 123
                   },
                   {
                       "vaultId": "4f2c56761b7a1b68e20f83b82372e203088453a86cce1f365fd2dcc1fc385d0d",
@@ -73,32 +74,12 @@ endpoints:
                       "collateralValue": 40000,
                       "loanValue": 24553.00518339,
                       "interestValue": 0,
-                      "currentRatio": -1
-                  },
-                  {
-                      "vaultId": "5f2c56761b7a1b68e20f83b82372e203088453a86cce1f365fd2dcc1fc385d0d",
-                      "loadSchemeId": "C350",
-                      "ownerAddress": "tn2cpmFQJdKmrfzzKxeDoZ5wAWWUo5maED",
-                      "state": "inactive",
-                      "collateralAmounts": [
-                          "10000.00000000@DFI"
-                      ],
-                      "loanAmounts": [
-                          "5.00148096@TSLA",
-                          "20003.25798370@DUSD"
-                      ],
-                      "interestAmounts": [
-                          "0.00148096@TSLA",
-                          "3.25798370@DUSD"
-                      ],
-                      "collateralValue": 40000,
-                      "loanValue": 24553.00518339,
-                      "interestValue": 0,
-                      "currentRatio": -1
+                      "informativeRatio": 143.1234,
+                      "collateralRatio": -1
                   }
               ],
               "stats": {
-                  "count": 3,
+                  "count": 2,
                   "count_active": 2,
                   "schemes_used": {
                       "C150": 0,
@@ -108,8 +89,8 @@ endpoints:
                       "C500": 0,
                       "C1000": 0
                   },
-                  "sum_collateral_value": 120000,
-                  "sum_loan_value": 73659.01555017
+                  "sum_collateral_value": 80000,
+                  "sum_loan_value": 49106.01036678
               },
               "links": {
                   "first": "http://defichain-api.test/v1/vaults?page=1",
@@ -123,8 +104,8 @@ endpoints:
                   "last_page": 1,
                   "path": "http://defichain-api.test/v1/vaults",
                   "per_page": 5,
-                  "to": 3,
-                  "total": 3
+                  "to": 2,
+                  "total": 2
               }
           }
         headers: []
@@ -146,7 +127,7 @@ endpoints:
         name: vaultId
         description: ''
         required: true
-        example: eos
+        example: unde
         type: string
     queryParameters: []
     bodyParameters: []
@@ -156,7 +137,7 @@ endpoints:
         content: |
           {
               "data": {
-                  "vaultId": "4f2c56761b7a1b68e20f83b82372e203088453a86cce1f365fd2dcc1fc385d0d",
+                  "vaultId": "4f2c56761b7a1b68e20f83b82372e203088453a86cce1f365fd2dcc1fc385d0c",
                   "loadSchemeId": "C350",
                   "ownerAddress": "tn2cpmFQJdKmrfzzKxeDoZ5wAWWUo5maED",
                   "state": "active",
@@ -173,8 +154,9 @@ endpoints:
                   ],
                   "collateralValue": 40000,
                   "loanValue": 24553.00518339,
-                  "interestValue": 0,
-                  "currentRatio": -1
+                  "interestValue": 4.60518339,
+                  "informativeRatio": 149.44494195,
+                  "collateralRatio": 123
               }
           }
         headers: []
@@ -204,7 +186,7 @@ endpoints:
         name: ownerAddress
         description: ''
         required: true
-        example: ipsum
+        example: error
         type: string
     queryParameters: []
     bodyParameters: []
@@ -214,7 +196,7 @@ endpoints:
         content: |
           {
               "data": {
-                  "vaultId": "4f2c56761b7a1b68e20f83b82372e203088453a86cce1f365fd2dcc1fc385d0d",
+                  "vaultId": "4f2c56761b7a1b68e20f83b82372e203088453a86cce1f365fd2dcc1fc385d0c",
                   "loadSchemeId": "C350",
                   "ownerAddress": "tn2cpmFQJdKmrfzzKxeDoZ5wAWWUo5maED",
                   "state": "active",
@@ -231,8 +213,9 @@ endpoints:
                   ],
                   "collateralValue": 40000,
                   "loanValue": 24553.00518339,
-                  "interestValue": 0,
-                  "currentRatio": -1
+                  "interestValue": 4.60518339,
+                  "informativeRatio": 149.44494195,
+                  "collateralRatio": 123
               }
           }
         headers: []
@@ -291,7 +274,8 @@ endpoints:
                       "collateralValue": 40000,
                       "loanValue": 24553.00518339,
                       "interestValue": 4.60518339,
-                      "currentRatio": 163
+                      "informativeRatio": 149.44494195,
+                      "collateralRatio": 123
                   },
                   {
                       "vaultId": "4f2c56761b7a1b68e20f83b82372e203088453a86cce1f365fd2dcc1fc385d0d",
@@ -312,32 +296,12 @@ endpoints:
                       "collateralValue": 40000,
                       "loanValue": 24553.00518339,
                       "interestValue": 0,
-                      "currentRatio": -1
-                  },
-                  {
-                      "vaultId": "5f2c56761b7a1b68e20f83b82372e203088453a86cce1f365fd2dcc1fc385d0d",
-                      "loadSchemeId": "C350",
-                      "ownerAddress": "tn2cpmFQJdKmrfzzKxeDoZ5wAWWUo5maED",
-                      "state": "inactive",
-                      "collateralAmounts": [
-                          "10000.00000000@DFI"
-                      ],
-                      "loanAmounts": [
-                          "5.00148096@TSLA",
-                          "20003.25798370@DUSD"
-                      ],
-                      "interestAmounts": [
-                          "0.00148096@TSLA",
-                          "3.25798370@DUSD"
-                      ],
-                      "collateralValue": 40000,
-                      "loanValue": 24553.00518339,
-                      "interestValue": 0,
-                      "currentRatio": -1
+                      "informativeRatio": 143.1234,
+                      "collateralRatio": -1
                   }
               ],
               "stats": {
-                  "count": 3,
+                  "count": 2,
                   "count_active": 2,
                   "schemes_used": {
                       "C150": 0,
@@ -347,8 +311,8 @@ endpoints:
                       "C500": 0,
                       "C1000": 0
                   },
-                  "sum_collateral_value": 120000,
-                  "sum_loan_value": 73659.01555017
+                  "sum_collateral_value": 80000,
+                  "sum_loan_value": 49106.01036678
               },
               "links": {
                   "first": "http://defichain-api.test/v1/vaults?page=1",
@@ -362,8 +326,8 @@ endpoints:
                   "last_page": 1,
                   "path": "http://defichain-api.test/v1/vaults",
                   "per_page": 5,
-                  "to": 3,
-                  "total": 3
+                  "to": 2,
+                  "total": 2
               }
           }
         headers: []
