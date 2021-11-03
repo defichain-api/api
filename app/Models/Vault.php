@@ -19,7 +19,8 @@ use Str;
  * @property float      collateralValue
  * @property float      loanValue
  * @property float      interestValue
- * @property integer    currentRatio
+ * @property float    informativeRatio
+ * @property integer    collateralRatio
  */
 class Vault extends Model
 {
@@ -35,7 +36,8 @@ class Vault extends Model
         'collateralValue',
         'loanValue',
         'interestValue',
-        'currentRatio',
+        'informativeRatio',
+        'collateralRatio',
     ];
     protected $casts = [
         'collateralAmounts' => 'array',

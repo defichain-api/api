@@ -21,7 +21,8 @@ class VaultResource extends JsonResource
             'collateralValue'   => $this->collateralValue,
             'loanValue'         => $this->loanValue,
             'interestValue'     => $this->interestValue,
-            'currentRatio'      => $this->currentRatio,
+            'informativeRatio'  => $this->informativeRatio,
+            'collateralRatio'   => $this->collateralRatio,
         ];
     }
 }

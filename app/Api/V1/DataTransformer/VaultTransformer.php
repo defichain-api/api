@@ -32,7 +32,8 @@ class VaultTransformer
                 'collateralValue'   => $item['collateralValue'],
                 'loanValue'         => $item['loanValue'],
                 'interestValue'     => (float)$item['interestValue'],
-                'currentRatio'      => (int)Str::replace('%', '', $item['currentRatio']),
+                'informativeRatio'  => (float)$item['informativeRatio'],
+                'collateralRatio'   => (int)Str::replace('%', '', $item['collateralRatio']),
                 'updated_at'        => now(),
             ];
         }

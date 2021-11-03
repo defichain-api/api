@@ -20,7 +20,8 @@ class CreateVaultsTable extends Migration
             $table->float('collateralValue', 22, 8)->default(0);
             $table->float('loanValue', 22, 8)->default(0);
             $table->float('interestValue', 22, 8)->default(0);
-            $table->integer('currentRatio')->default(-1);
+            $table->float('informativeRatio', 22, 8)->default(0);
+            $table->integer('collateralRatio')->default(-1);
             $table->timestamps();
         });
     }

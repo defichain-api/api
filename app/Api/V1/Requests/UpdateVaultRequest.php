@@ -21,7 +21,8 @@ class UpdateVaultRequest extends ApiRequest
             '*.collateralValue'   => ['required', 'numeric'],
             '*.loanValue'         => ['required', 'numeric'],
             '*.interestValue'     => ['sometimes'],
-            '*.currentRatio'      => ['required', 'numeric'],
+            '*.informativeRatio'  => ['required', 'numeric'],
+            '*.collateralRatio'   => ['required', 'numeric'],
         ];
     }
 
