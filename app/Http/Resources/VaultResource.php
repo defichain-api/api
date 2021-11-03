@@ -11,18 +11,22 @@ class VaultResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'vaultId'           => $this->vaultId,
-            'loadSchemeId'      => $this->loanScheme->name,
-            'ownerAddress'      => $this->ownerAddress,
-            'state'             => $this->state,
-            'collateralAmounts' => $this->collateralAmounts,
-            'loanAmounts'       => $this->loanAmounts,
-            'interestAmounts'   => $this->interestAmounts,
-            'collateralValue'   => $this->collateralValue,
-            'loanValue'         => $this->loanValue,
-            'interestValue'     => $this->interestValue,
-            'informativeRatio'  => $this->informativeRatio,
-            'collateralRatio'   => $this->collateralRatio,
+            'vaultId'            => $this->vaultId,
+            'loadSchemeId'       => $this->loanScheme->name,
+            'ownerAddress'       => $this->ownerAddress,
+            'state'              => $this->state,
+            'collateralAmounts'  => $this->collateralAmounts,
+            'loanAmounts'        => $this->loanAmounts,
+            'interestAmounts'    => $this->interestAmounts,
+            'collateralValue'    => $this->collateralValue,
+            'loanValue'          => $this->loanValue,
+            'interestValue'      => $this->interestValue,
+            'informativeRatio'   => $this->informativeRatio,
+            'collateralRatio'    => $this->collateralRatio,
+            'liquidationHeight'  => $this->liquidationHeight,
+            'batchCount'         => $this->batchCount,
+            'liquidationPenalty' => $this->liquidationPenalty,
+            'batches'            => $this->batches,
         ];
     }
 }

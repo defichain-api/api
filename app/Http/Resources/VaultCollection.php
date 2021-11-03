@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Api\Enum\VaultStates;
 use App\Models\LoanScheme;
 use App\Models\Vault;
 use Illuminate\Http\Resources\Json\ResourceCollection;
@@ -38,10 +39,10 @@ class VaultCollection extends ResourceCollection
         return cache()->remember('vault_stats', now()->addMinutes(10), function () {
             return [
                 'count'                => Vault::count(),
-                'count_active'         => Vault::where('state', 'active')->count(),
+                'count_active'         => Vault::where('state', VaultStates::ACTIVE)->count(),
                 'schemes_used'         => $this->loanSchemeStats(),
-                'sum_collateral_value' => Vault::sum('collateralValue'),
-                'sum_loan_value'       => Vault::sum('loanValue'),
+                'sum_collateral_value' => Vault::where('state', VaultStates::ACTIVE)->sum('collateralValue'),
+                'sum_loan_value'       => Vault::where('state', VaultStates::ACTIVE)->sum('loanValue'),
             ];
         });
     }
@@ -49,10 +50,10 @@ class VaultCollection extends ResourceCollection
     protected function loanSchemeStats(): array
     {
         return cache()->remember('loan_schemes_used', now()->addMinutes(15), function () {
-            $loanSchemes = LoanScheme::all();
+            $loanSchemes = LoanScheme::with('vaults')->get();
             $stats = [];
             $loanSchemes->each(function (LoanScheme $loanScheme) use (&$stats) {
-                $stats[$loanScheme->name] = $loanScheme->vaults->count();
+                $stats[$loanScheme->name] = $loanScheme->vaultsActive->count();
             });
 
             return $stats;

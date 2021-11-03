@@ -19,8 +19,12 @@ use Str;
  * @property float      collateralValue
  * @property float      loanValue
  * @property float      interestValue
- * @property float    informativeRatio
+ * @property float      informativeRatio
  * @property integer    collateralRatio
+* @property integer liquidationHeight
+* @property integer batchCount
+* @property integer liquidationPenalty
+* @property array batches
  */
 class Vault extends Model
 {
@@ -38,11 +42,16 @@ class Vault extends Model
         'interestValue',
         'informativeRatio',
         'collateralRatio',
+        'liquidationHeight',
+        'batchCount',
+        'liquidationPenalty',
+        'batches',
     ];
     protected $casts = [
         'collateralAmounts' => 'array',
         'loanAmounts'       => 'array',
         'interestAmounts'   => 'array',
+        'batches'           => 'array',
     ];
 
     public function loanScheme(): BelongsTo

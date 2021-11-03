@@ -17,11 +17,16 @@ class CreateVaultsTable extends Migration
             $table->json('collateralAmounts')->nullable();
             $table->json('loanAmounts')->nullable();
             $table->json('interestAmounts')->nullable();
-            $table->float('collateralValue', 22, 8)->default(0);
-            $table->float('loanValue', 22, 8)->default(0);
-            $table->float('interestValue', 22, 8)->default(0);
-            $table->float('informativeRatio', 22, 8)->default(0);
-            $table->integer('collateralRatio')->default(-1);
+            $table->float('collateralValue', 22, 8)->nullable();
+            $table->float('loanValue', 22, 8)->nullable();
+            $table->float('interestValue', 22, 8)->nullable();
+            $table->float('informativeRatio', 22, 8)->nullable();
+            $table->integer('collateralRatio')->nullable();
+
+            $table->unsignedInteger('liquidationHeight')->nullable()->index();
+            $table->unsignedInteger('batchCount')->nullable();
+            $table->unsignedInteger('liquidationPenalty')->nullable();
+            $table->json('batches')->nullable();
             $table->timestamps();
         });
     }

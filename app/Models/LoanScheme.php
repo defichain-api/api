@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Api\Enum\VaultStates;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
@@ -25,5 +26,10 @@ class LoanScheme extends Model
     public function vaults(): HasMany
     {
         return $this->hasMany(Vault::class, 'loanSchemeId', 'id');
+    }
+
+    public function vaultsActive(): HasMany
+    {
+        return $this->hasMany(Vault::class, 'loanSchemeId', 'id')->where('state', VaultStates::ACTIVE);
     }
 }
