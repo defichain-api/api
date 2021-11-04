@@ -12,7 +12,7 @@ class VaultResource extends JsonResource
     {
         return [
             'vaultId'            => $this->vaultId,
-            'loadSchemeId'       => $this->loanScheme->name,
+            'loanSchemeId'       => $this->loanScheme->name,
             'ownerAddress'       => $this->ownerAddress,
             'state'              => $this->state,
             'collateralAmounts'  => $this->collateralAmounts,
