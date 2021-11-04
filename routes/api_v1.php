@@ -56,6 +56,8 @@ Route::prefix('vaults')
             ->name('vault_id');
         Route::get('address/{ownerAddress}', [VaultController::class, 'getByIdOrAddress'])
             ->name('vault_address');
+		Route::post('addresses', [VaultController::class, 'getAddresses'])
+			->name('vault_addresses');
     });
 
 Route::prefix('loan_schemes')
