@@ -93,6 +93,17 @@ class VaultController
 		return new VaultResource($vault);
 	}
 
+	/**
+	 * get multiple vaults
+	 *
+	 * Get multiple vaults by vaults ids or the owner address.
+	 * Addresses and ids can be mixed.
+	 * @group        Vaults
+	 * @bodyParam addresses string[] vault ids or owner addresses Example:['a1fecc30e895591c5f503b32dd021c1f765dd3e9111d1c42ea7b647a5ad03b5e', 'trGCtcntm42AMLw3fhaDPwBMYTikTMYzFm']
+	 * @responseFile storage/app/docu_responses/vault.single.json
+	 * @responseFile sstatus=400 torage/app/docu_responses/vault.not_found.json
+	 * @return \App\Http\Resources\VaultResource|\Illuminate\Http\JsonResponse
+	 */
 	public function getAddresses(Request $request): VaultCollection
 	{
 		$vaults = Vault::whereIn('vaultId', $request->input('addresses'))

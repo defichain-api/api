@@ -129,7 +129,7 @@ endpoints:
         name: vaultId
         description: ''
         required: true
-        example: unde
+        example: ea
         type: string
     queryParameters: []
     bodyParameters: []
@@ -188,7 +188,7 @@ endpoints:
         name: ownerAddress
         description: ''
         required: true
-        example: error
+        example: deleniti
         type: string
     queryParameters: []
     bodyParameters: []
@@ -334,4 +334,66 @@ endpoints:
           }
         headers: []
         description: '200'
+    responseFields: []
+  -
+    httpMethods:
+      - POST
+    uri: v1/vaults/addresses
+    metadata:
+      title: 'get multiple vaults'
+      description: |-
+        Get multiple vaults by vaults ids or the owner address.
+        Addresses and ids can be mixed.
+      authenticated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters:
+      addresses:
+        name: addresses
+        description: 'vault ids or owner addresses'
+        required: false
+        example:
+          - quos
+        type: 'string[]'
+    responses:
+      -
+        status: 200
+        content: |
+          {
+              "data": {
+                  "vaultId": "4f2c56761b7a1b68e20f83b82372e203088453a86cce1f365fd2dcc1fc385d0c",
+                  "loadSchemeId": "C350",
+                  "ownerAddress": "tn2cpmFQJdKmrfzzKxeDoZ5wAWWUo5maED",
+                  "state": "active",
+                  "collateralAmounts": [
+                      "10000.00000000@DFI"
+                  ],
+                  "loanAmounts": [
+                      "5.00148096@TSLA",
+                      "20003.25798370@DUSD"
+                  ],
+                  "interestAmounts": [
+                      "0.00148096@TSLA",
+                      "3.25798370@DUSD"
+                  ],
+                  "collateralValue": 40000,
+                  "loanValue": 24553.00518339,
+                  "interestValue": 4.60518339,
+                  "informativeRatio": 149.44494195,
+                  "collateralRatio": 123
+              }
+          }
+        headers: []
+        description: '200'
+      -
+        status: 400
+        content: |
+          {
+              "message": "vault not found"
+          }
+        headers: []
+        description: '400'
     responseFields: []

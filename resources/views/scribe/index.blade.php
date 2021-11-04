@@ -48,7 +48,7 @@
                             <li><a href="http://github.com/knuckleswtf/scribe">Documentation powered by Scribe ✍</a></li>
                     </ul>
             <ul class="toc-footer" id="last-updated">
-            <li>Last updated: November 3 2021</li>
+            <li>Last updated: November 4 2021</li>
         </ul>
 </div>
 <div class="page-wrapper">
@@ -137,7 +137,7 @@ fetch(url, {
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
 x-ratelimit-limit: 60
-x-ratelimit-remaining: 59
+x-ratelimit-remaining: 58
 access-control-allow-origin: *
  </code></pre>
         </details>         <pre>
@@ -2160,13 +2160,13 @@ fetch(url, {
 
 
 <pre><code class="language-bash">curl --request GET \
-    --get "https://defichain-api.io/v1/vaults/id/unde" \
+    --get "https://defichain-api.io/v1/vaults/id/ea" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>
 
 <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;get(
-    'https://defichain-api.io/v1/vaults/id/unde',
+    'https://defichain-api.io/v1/vaults/id/ea',
     [
         'headers' =&gt; [
             'Accept' =&gt; 'application/json',
@@ -2179,7 +2179,7 @@ print_r(json_decode((string) $body));</code></pre>
 <pre><code class="language-python">import requests
 import json
 
-url = 'https://defichain-api.io/v1/vaults/id/unde'
+url = 'https://defichain-api.io/v1/vaults/id/ea'
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json'
@@ -2189,7 +2189,7 @@ response = requests.request('GET', url, headers=headers)
 response.json()</code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "https://defichain-api.io/v1/vaults/id/unde"
+    "https://defichain-api.io/v1/vaults/id/ea"
 );
 
 const headers = {
@@ -2292,13 +2292,13 @@ fetch(url, {
 
 
 <pre><code class="language-bash">curl --request GET \
-    --get "https://defichain-api.io/v1/vaults/address/error" \
+    --get "https://defichain-api.io/v1/vaults/address/deleniti" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>
 
 <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;get(
-    'https://defichain-api.io/v1/vaults/address/error',
+    'https://defichain-api.io/v1/vaults/address/deleniti',
     [
         'headers' =&gt; [
             'Accept' =&gt; 'application/json',
@@ -2311,7 +2311,7 @@ print_r(json_decode((string) $body));</code></pre>
 <pre><code class="language-python">import requests
 import json
 
-url = 'https://defichain-api.io/v1/vaults/address/error'
+url = 'https://defichain-api.io/v1/vaults/address/deleniti'
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json'
@@ -2321,7 +2321,7 @@ response = requests.request('GET', url, headers=headers)
 response.json()</code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "https://defichain-api.io/v1/vaults/address/error"
+    "https://defichain-api.io/v1/vaults/address/deleniti"
 );
 
 const headers = {
@@ -2587,6 +2587,167 @@ fetch(url, {
     <br>
 <p>active or inactive</p>            </p>
                     </form>
+
+            <h2 id="vaults-POSTv1-vaults-addresses">get multiple vaults</h2>
+
+<p>
+</p>
+
+<p>Get multiple vaults by vaults ids or the owner address.
+Addresses and ids can be mixed.</p>
+
+<span id="example-requests-POSTv1-vaults-addresses">
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">curl --request POST \
+    "https://defichain-api.io/v1/vaults/addresses" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"addresses\": [
+        \"quos\"
+    ]
+}"
+</code></pre>
+
+<pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;post(
+    'https://defichain-api.io/v1/vaults/addresses',
+    [
+        'headers' =&gt; [
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'addresses' =&gt; [
+                'quos',
+            ],
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre>
+
+<pre><code class="language-python">import requests
+import json
+
+url = 'https://defichain-api.io/v1/vaults/addresses'
+payload = {
+    "addresses": [
+        "quos"
+    ]
+}
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('POST', url, headers=headers, json=payload)
+response.json()</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "https://defichain-api.io/v1/vaults/addresses"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "addresses": [
+        "quos"
+    ]
+}
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre>
+</span>
+
+<span id="example-responses-POSTv1-vaults-addresses">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;data&quot;: {
+        &quot;vaultId&quot;: &quot;4f2c56761b7a1b68e20f83b82372e203088453a86cce1f365fd2dcc1fc385d0c&quot;,
+        &quot;loadSchemeId&quot;: &quot;C350&quot;,
+        &quot;ownerAddress&quot;: &quot;tn2cpmFQJdKmrfzzKxeDoZ5wAWWUo5maED&quot;,
+        &quot;state&quot;: &quot;active&quot;,
+        &quot;collateralAmounts&quot;: [
+            &quot;10000.00000000@DFI&quot;
+        ],
+        &quot;loanAmounts&quot;: [
+            &quot;5.00148096@TSLA&quot;,
+            &quot;20003.25798370@DUSD&quot;
+        ],
+        &quot;interestAmounts&quot;: [
+            &quot;0.00148096@TSLA&quot;,
+            &quot;3.25798370@DUSD&quot;
+        ],
+        &quot;collateralValue&quot;: 40000,
+        &quot;loanValue&quot;: 24553.00518339,
+        &quot;interestValue&quot;: 4.60518339,
+        &quot;informativeRatio&quot;: 149.44494195,
+        &quot;collateralRatio&quot;: 123
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (400):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;message&quot;: &quot;vault not found&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTv1-vaults-addresses" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTv1-vaults-addresses"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTv1-vaults-addresses"></code></pre>
+</span>
+<span id="execution-error-POSTv1-vaults-addresses" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTv1-vaults-addresses"></code></pre>
+</span>
+<form id="form-POSTv1-vaults-addresses" data-method="POST"
+      data-path="v1/vaults/addresses"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTv1-vaults-addresses', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>v1/vaults/addresses</code></b>
+        </p>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>addresses</code></b>&nbsp;&nbsp;<small>string[]</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="addresses.0"
+               data-endpoint="POSTv1-vaults-addresses"
+               data-component="body"  hidden>
+        <input type="text"
+               name="addresses.1"
+               data-endpoint="POSTv1-vaults-addresses"
+               data-component="body" hidden>
+    <br>
+<p>vault ids or owner addresses</p>        </p>
+    
+    </form>
 
     
 
