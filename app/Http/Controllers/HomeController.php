@@ -10,9 +10,9 @@ class HomeController extends Controller
     {
         return response()->json([
             'latest' => [
-                'url'           => route('api.v1.start'),
-                'documentation' => route('docs.v1.start'),
-                'changelog'     => route('docs.v1.changelog'),
+                'url'           => route('api.v1.index'),
+                'documentation' => route('docs.index'),
+                'changelog'     => route('docs.changelog'),
             ],
         ], JsonResponse::HTTP_OK);
     }

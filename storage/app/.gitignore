@@ -1,3 +1,5 @@
 *
 !public/
+!docu_responses/
 !.gitignore
+!scribe/

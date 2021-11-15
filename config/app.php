@@ -1,5 +1,7 @@
 <?php
 
+use App\BlockchainData\Client\Rpc\RpcClientServiceProvider;
+
 return [
 
     /*
@@ -136,7 +138,6 @@ return [
     */
 
     'providers' => [
-
         /*
          * Laravel Framework Service Providers...
          */
@@ -166,6 +167,7 @@ return [
         /*
          * Package Service Providers...
          */
+        RpcClientServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -175,7 +177,6 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
     ],
 
     /*
@@ -190,7 +191,6 @@ return [
     */
 
     'aliases' => [
-
         'App'          => Illuminate\Support\Facades\App::class,
         'Arr'          => Illuminate\Support\Arr::class,
         'Artisan'      => Illuminate\Support\Facades\Artisan::class,
@@ -228,7 +228,5 @@ return [
         'URL'          => Illuminate\Support\Facades\URL::class,
         'Validator'    => Illuminate\Support\Facades\Validator::class,
         'View'         => Illuminate\Support\Facades\View::class,
-
     ],
-
 ];

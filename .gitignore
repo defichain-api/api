@@ -14,3 +14,7 @@ yarn-error.log
 /.idea
 /.vscode
 /_ide_helper.php
+/.bash_history
+/.phpstorm.meta.php
+/.config/*
+/.run/tests.run.xml
