@@ -13,7 +13,6 @@ class LoanSchemeResource extends JsonResource
             'name'                   => $this->name,
             'minCollaterationRatio'  => $this->minCollaterationRatio,
             'interestRate'           => $this->interestRate,
-            'isDefault'              => (bool)$this->isDefault,
             'countVaultsUsingScheme' => $this->vaults->count(),
         ];
     }

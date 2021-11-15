@@ -30,7 +30,6 @@ class LoanSchemeFactory extends Factory
                 1000,
             ], 1, false)[0],
             'interestRate'         => $this->faker->randomFloat(8, 0.5, 5),
-            'isDefault'            => $this->faker->boolean,
         ];
     }
 

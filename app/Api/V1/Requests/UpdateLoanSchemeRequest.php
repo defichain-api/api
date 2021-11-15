@@ -12,7 +12,6 @@ class UpdateLoanSchemeRequest extends ApiRequest
             '*.id'           => ['required', 'string'],
             '*.mincolratio'  => ['required', 'integer', 'between:150,1000'],
             '*.interestrate' => ['required', 'numeric', 'between:0,99.99'],
-            '*.default'      => ['required', 'bool'],
         ];
     }
 

@@ -69,7 +69,7 @@ You can switch the language used with the tabs at the top right (or from the nav
 
         <h1 id="api-v1">API v1</h1>
 
-    
+
 
             <h2 id="api-v1-GETv1-ping">Check health of the API</h2>
 
@@ -176,7 +176,7 @@ access-control-allow-origin: *
 
         <h1 id="fixed-price-intervals">Fixed Price Intervals</h1>
 
-    
+
 
             <h2 id="fixed-price-intervals-GETv1-fixed_price_intervals">list Fixed Price Intervals</h2>
 
@@ -364,7 +364,7 @@ fetch(url, {
 
         <h1 id="loan-scheme">Loan Scheme</h1>
 
-    
+
 
             <h2 id="loan-scheme-GETv1-loan_schemes">list Loan Schemes</h2>
 
@@ -433,42 +433,36 @@ fetch(url, {
             &quot;name&quot;: &quot;C150&quot;,
             &quot;minCollaterationRatio&quot;: 150,
             &quot;interestRate&quot;: 5,
-            &quot;isDefault&quot;: true,
             &quot;countVaultsUsingScheme&quot;: 99
         },
         {
             &quot;name&quot;: &quot;C175&quot;,
             &quot;minCollaterationRatio&quot;: 175,
             &quot;interestRate&quot;: 3,
-            &quot;isDefault&quot;: false,
             &quot;countVaultsUsingScheme&quot;: 12
         },
         {
             &quot;name&quot;: &quot;C200&quot;,
             &quot;minCollaterationRatio&quot;: 200,
             &quot;interestRate&quot;: 2,
-            &quot;isDefault&quot;: false,
             &quot;countVaultsUsingScheme&quot;: 0
         },
         {
             &quot;name&quot;: &quot;C350&quot;,
             &quot;minCollaterationRatio&quot;: 350,
             &quot;interestRate&quot;: 1.5,
-            &quot;isDefault&quot;: false,
             &quot;countVaultsUsingScheme&quot;: 0
         },
         {
             &quot;name&quot;: &quot;C500&quot;,
             &quot;minCollaterationRatio&quot;: 500,
             &quot;interestRate&quot;: 1,
-            &quot;isDefault&quot;: false,
             &quot;countVaultsUsingScheme&quot;: 0
         },
         {
             &quot;name&quot;: &quot;C1000&quot;,
             &quot;minCollaterationRatio&quot;: 1000,
             &quot;interestRate&quot;: 0.5,
-            &quot;isDefault&quot;: false,
             &quot;countVaultsUsingScheme&quot;: 0
         }
     ],
@@ -507,7 +501,7 @@ fetch(url, {
 
         <h1 id="masternodes">Masternodes</h1>
 
-    
+
 
             <h2 id="masternodes-GETv1-masternodes">active Masternodes (paginated)</h2>
 
@@ -1927,7 +1921,7 @@ fetch(url, {
 
         <h1 id="vaults">Vaults</h1>
 
-    
+
 
             <h2 id="vaults-GETv1-vaults">list all vaults</h2>
 
@@ -2746,12 +2740,12 @@ fetch(url, {
                data-component="body" hidden>
     <br>
 <p>vault ids or owner addresses</p>        </p>
-    
+
     </form>
 
-    
 
-        
+
+
     </div>
     <div class="dark-box">
                     <div class="lang-selector">

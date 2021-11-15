@@ -6,27 +6,26 @@ use App\Models\LoanScheme;
 
 class LoanSchemeTransformer
 {
-    protected array $data;
+	protected array $data;
 
-    public function init(array $data): LoanSchemeTransformer
-    {
-        $this->data = $data;
+	public function init(array $data): LoanSchemeTransformer
+	{
+		$this->data = $data;
 
-        return $this;
-    }
+		return $this;
+	}
 
-    public function store(): bool
-    {
-        foreach ($this->data as $item) {
-            LoanScheme::updateOrCreate([
-                'name' => $item['id'],
-            ], [
-                'minCollaterationRatio' => $item['mincolratio'],
-                'interestRate'          => $item['interestrate'],
-                'isDefault'             => $item['default'],
-            ]);
-        }
+	public function store(): bool
+	{
+		foreach ($this->data as $item) {
+			LoanScheme::updateOrCreate([
+				'name' => $item['id'],
+			], [
+				'minCollaterationRatio' => $item['mincolratio'],
+				'interestRate'          => $item['interestrate'],
+			]);
+		}
 
-        return true;
-    }
+		return true;
+	}
 }
