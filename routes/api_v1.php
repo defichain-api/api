@@ -51,6 +51,7 @@ Route::prefix('vaults')
             ->name('state')
             ->middleware(['paginated']);
         Route::post('update', [VaultController::class, 'update'])
+	        ->middleware('throttle:100000')
             ->name('update');
         Route::get('id/{vaultId}', [VaultController::class, 'getByIdOrAddress'])
             ->name('vault_id');
