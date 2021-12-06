@@ -21,6 +21,11 @@ class VaultTransformer
     {
         $data = [];
         foreach ($this->data as $item) {
+			if (LoanScheme::where('name', $item['loanSchemeId'])->count() === 0) {
+				\Log::info(sprintf('can\'t find loan scheme "%s"', $item['loanSchemeId']));
+				continue;
+			}
+
             $data[] = [
                 'vaultId'            => $item['vaultId'],
                 'loanSchemeId'       => LoanScheme::where('name', $item['loanSchemeId'])->first()->id,
